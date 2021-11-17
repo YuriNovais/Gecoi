@@ -1,0 +1,254 @@
+﻿@model Protocolo.Models.SearchSectorYear
+
+@{
+    ViewBag.Title = "Relatório de Processos no Setor por Ano";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb" style="margin-left: -30px; margin-right: -30px;">
+            <li>
+                <a href="@Url.Action("Home", "Protocolo")">
+                    <i class="fa fa-home fa-fw"></i> Home
+                </a>
+            </li>
+            <li class="active">
+                @ViewBag.Title
+            </li>
+        </ol>
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @using (Html.BeginForm(null, null, FormMethod.Post))
+            {
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TipoDocumentoId, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.TipoDocumentoId, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AssuntoId, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.AssuntoId, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ano, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.Ano, null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Ano, string.Empty, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SetorId, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.SetorId, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.Status, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label(" ")
+
+                        <br />
+
+                        @Html.LabelFor(model => model.Atrasados)
+                        <label class="checkbox-inline">
+                            @Html.CheckBoxFor(model => model.Atrasados, new { @style = "margin-left: 4px; position: inherit;" })
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-print" aria-hidden="true"></span> Imprimir
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+@if (Model.Result != null)
+{
+    <div id="protocolosSetorAno" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 1070px;">
+            <div id="protocolosSetorAnoContent" class="modal-content" style="border: none; overflow-y: auto;">
+                <div class="modal-body">
+
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tr>
+                                <td class="grid-report text-center" style="border: none; border-bottom: 1px solid #000;">
+                                    @if (Model.Instituicao == null)
+                                    {
+                                        <h3>Relatório de Processos no Setor por Ano</h3>
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Instituicao/ViewLogomarca" width="85" height="90" alt="Logomarca" title="Logomarca" style="float: left;" />
+                                        <div style="width: 900px;">
+                                            <h2>@Html.Raw(Model.Instituicao.Nome)</h2>
+
+                                            <h3>Relatório de Processos no Setor por Ano</h3>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12" style="margin-bottom: 15px; margin-top: -15px;">
+                        <table class="table table-condensed" style="border-bottom: 1px solid #000;">
+                            <tr>
+                                <td style="border-top: none;" colspan="6">
+                                    Filtros/Seleção:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: none; border-top: none; width: 100px;">Tipo:</td>
+                                <td style="border-bottom: none; border-top: none; width: 250px;">@Model.TipoDocumento</td>
+                                <td style="border-bottom: none; border-top: none; width: 100px;">Assunto:</td>
+                                <td style="border-bottom: none; border-top: none; width: 250px;">@Model.Assunto</td>
+                                <td style="border-bottom: none; border-top: none; width: 100px;">Ano:</td>
+                                <td style="border-bottom: none; border-top: none; width: 100px;">@Html.Raw(Model.Ano)</td>
+                            </tr>
+
+                            <tr>
+                                <td style="border-top: none;">Setor:</td>
+                                <td style="border-top: none;">@Model.Setor</td>
+                                <td style="border-top: none;">Situação:</td>
+                                <td style="border-top: none;">@Model.DescricaoStatus</td>
+                                <td style="border-top: none;"></td>
+                                <td style="border-top: none;"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.Raw("SETOR")
+                                </th>
+                                <th>
+                                    @Html.Raw("JAN")
+                                </th>
+                                <th>
+                                    @Html.Raw("FEV")
+                                </th>
+                                <th>
+                                    @Html.Raw("MAR")
+                                </th>
+                                <th>
+                                    @Html.Raw("ABR")
+                                </th>
+                                <th>
+                                    @Html.Raw("MAI")
+                                </th>
+                                <th>
+                                    @Html.Raw("JUN")
+                                </th>
+                                <th>
+                                    @Html.Raw("JUL")
+                                </th>
+                                <th>
+                                    @Html.Raw("AGO")
+                                </th>
+                                <th>
+                                    @Html.Raw("SET")
+                                </th>
+                                <th>
+                                    @Html.Raw("OUT")
+                                </th>
+                                <th>
+                                    @Html.Raw("NOV")
+                                </th>
+                                <th>
+                                    @Html.Raw("DEZ")
+                                </th>
+                                <th>
+                                    @Html.Raw("TOTAL")
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var setor in Model.Result)
+                            {
+                                <tr>
+                                    <td>@Html.Raw(setor.Key.Nome)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(1) ? setor.Value[1] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(2) ? setor.Value[2] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(3) ? setor.Value[3] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(4) ? setor.Value[4] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(5) ? setor.Value[5] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(6) ? setor.Value[6] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(7) ? setor.Value[7] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(8) ? setor.Value[8] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(9) ? setor.Value[9] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(10) ? setor.Value[10] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(11) ? setor.Value[11] : 0)</td>
+                                    <td>@Html.Raw(setor.Value.ContainsKey(12) ? setor.Value[12] : 0)</td>
+                                    <td>@Html.Raw(Model.TotalGeralPorSetor[setor.Key])</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td style="font-weight: bold;">TOTAIS</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(1) ? Model.TotalGeralPorMes[1] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(2) ? Model.TotalGeralPorMes[2] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(3) ? Model.TotalGeralPorMes[3] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(4) ? Model.TotalGeralPorMes[4] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(5) ? Model.TotalGeralPorMes[5] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(6) ? Model.TotalGeralPorMes[6] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(7) ? Model.TotalGeralPorMes[7] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(8) ? Model.TotalGeralPorMes[8] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(9) ? Model.TotalGeralPorMes[9] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(10) ? Model.TotalGeralPorMes[10] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(11) ? Model.TotalGeralPorMes[11] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeralPorMes.ContainsKey(12) ? Model.TotalGeralPorMes[12] : 0)</td>
+                                <td>@Html.Raw(Model.TotalGeral)</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $protocolosSetorAno = $('#protocolosSetorAno');
+
+            if ($protocolosSetorAno.length) {
+                writeView('Relatório de Processos no Setor por Ano', $protocolosSetorAno.html());
+            }
+
+            initDatepicker();
+        });
+    </script>
+}

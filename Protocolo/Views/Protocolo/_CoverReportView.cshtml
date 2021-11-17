@@ -1,0 +1,134 @@
+﻿@model Protocolo.Models.Protocolo
+
+<div class="modal-body">
+
+    <div class="col-md-12">
+
+        <table class="table table-condensed">
+            <tr>
+                <td class="text-center" style="border: none;">
+                    @if (Model.Instituicao == null)
+                    {
+                        <h3 style="text-decoration: underline;">CAPA DE PROTOCOLO</h3>
+                        
+                    }
+                    else
+                    {
+                        <img src="~/Instituicao/ViewLogomarca" width="85" height="90" alt="Logomarca" title="Logomarca" style="float: left;" />
+                        <div style="width: 900px;">
+                            <h2 style="margin: 10px;">@Html.Raw(Model.Instituicao.Nome)</h2>
+                            <h3 style="margin: 0; text-decoration: underline;">CAPA DO PROCESSO</h3>
+                            <h3 style="margin-bottom: 0; margin-top: 5px;">PROTOCOLO</h3>
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+
+        <table class="table table-condensed">
+            <tr>
+                <td class="grid-report text-left" style="border-right: none; border-bottom: none; border-top: 1px solid #000;">
+                    PROCESSO N° @Html.Raw(Model.NumeroAno)
+                </td>
+                <td class="grid-report text-right" style="border-left: none; border-bottom: none; border-top: 1px solid #000;">
+                    EM @Html.Raw(Model.DataAbertura.ToString("dd/MM/yyyy"))
+                </td>
+            </tr>
+            <tr>
+                <td class="grid-report text-left" style="border-right: none; border-top: none; border-bottom: 1px solid #000;">
+                    PROTOCOLISTA: @Html.Raw(Model.UsuarioAbertura.Nome)
+                </td>
+                <td class="grid-report text-right" style="border-left: none; border-top: none; border-bottom: 1px solid #000;">
+                    CHAVE DE ACESSO: <span style="font-weight: bold;">@Html.Raw(Model.Chave)</span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                <td style="border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;">NOME DO REQUERENTE: @Html.Raw(Model.Pessoa.NomeRazao)</td>
+            </tr>
+            <tr>
+                <td style="border-left: 1px solid #000; border-right: 1px solid #000;">CREDOR:</td>
+            </tr>
+            <tr>
+                <td style="border-left: 1px solid #000; border-right: 1px solid #000;">ASSUNTO: @Html.Raw(Model.Assunto.Descricao)</td>
+            </tr>
+            <tr>
+                <td style="border-left: 1px solid #000; border-right: 1px solid #000; border-bottom: 1px solid #000;">DESCRIÇÃO: @Html.Raw(Model.Descricao)</td>
+            </tr>
+            <tr>
+                <td style="border-left: 1px solid #000; border-right: 1px solid #000; border-bottom: 1px solid #000;">Status: @Html.Raw(Model.DescricaoStatus)</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="col-md-6" style="float: left; width: 519px;">
+
+        <table class="table">
+            <tr>
+                <td style="width: 100px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;" class="text-center">DATA</td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000;" class="text-center">DESTINO</td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000;"></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="col-md-6" style="float: left; width: 519px;">
+
+        <table class="table">
+            <tr>
+                <td style="width: 100px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;" class="text-center">DATA</td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000;" class="text-center">DESTINO</td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-left: 1px solid #000; border-right: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000;"></td>
+                <td style="border-right: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000;"></td>
+            </tr>
+        </table>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,240 @@
+﻿@model Protocolo.Models.SearchSector
+
+@{
+    ViewBag.Title = "Relatório de Processos em cada Setor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb" style="margin-left: -30px; margin-right: -30px;">
+            <li>
+                <a href="@Url.Action("Home", "Protocolo")">
+                    <i class="fa fa-home fa-fw"></i> Home
+                </a>
+            </li>
+            <li class="active">
+                @ViewBag.Title
+            </li>
+        </ol>
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @using (Html.BeginForm(null, null, FormMethod.Post))
+            {
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TipoDocumentoId, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.TipoDocumentoId, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AssuntoId, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.AssuntoId, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SetorId, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.SetorId, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.Status, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataInicio, new { @class = "control-label" })
+                        <div class="input-group date">
+                            @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "form-control" } })
+                            @ProtocoloHelper.CalendarIcon()
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataFim, new { @class = "control-label" })
+                        <div class="input-group date">
+                            @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @class = "form-control" } })
+                            @ProtocoloHelper.CalendarIcon()
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Atrasados, new { @style = "float: left;" })
+                        <label class="checkbox-inline">
+                            @Html.CheckBoxFor(model => model.Atrasados, new { @style = "float: left; margin-left: 4px; position: inherit;" })
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-print" aria-hidden="true"></span> Imprimir
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+@if (Model.GroupedResult != null)
+{
+    <div id="processoPorSetor" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 1070px;">
+            <div id="processoPorSetorContent" class="modal-content" style="border: none; overflow-y: auto;">
+                <div class="modal-body">
+
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tr>
+                                <td class="grid-report text-center" style="border: none; border-bottom: 1px solid #000;">
+                                    @if (Model.Instituicao == null)
+                                    {
+                                        <h3>Relatório de Processos em cada Setor</h3>
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Instituicao/ViewLogomarca" width="85" height="90" alt="Logomarca" title="Logomarca" style="float: left;" />
+                                        <div style="width: 900px;">
+                                            <h2>@Html.Raw(Model.Instituicao.Nome)</h2>
+
+                                            <h3>Relatório de Processos em cada Setor</h3>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12" style="margin-bottom: 15px; margin-top: -15px;">
+                        <table class="table table-condensed" style="border-bottom: 1px solid #000;">
+                            <tr>
+                                <td style="border-top: none;" colspan="6">
+                                    Filtros/Seleção:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: none; border-top: none; width: 100px;">Tipo:</td>
+                                <td style="border-bottom: none; border-top: none; width: 250px;">@Model.TipoDocumento</td>
+                                <td style="border-bottom: none; border-top: none; width: 100px;">Assunto:</td>
+                                <td style="border-bottom: none; border-top: none; width: 250px;">@Model.Assunto</td>
+                                <td style="border-bottom: none; border-top: none; width: 100px;">Setor:</td>
+                                <td style="border-bottom: none; border-top: none; width: 250px;">@Model.Setor</td>
+                            </tr>
+
+                            <tr>
+                                <td style="border-top: none;">Situação:</td>
+                                <td style="border-top: none;">@Model.DescricaoStatus</td>
+                                <td style="border-top: none;">Data Inicial:</td>
+                                <td style="border-top: none;">@Html.Raw(Model.DataInicio == null ? string.Empty : Model.DataInicio.Value.ToString("dd/MM/yyyy"))</td>
+                                <td style="border-top: none;">Data Final:</td>
+                                <td style="border-top: none;">@Html.Raw(Model.DataFim == null ? string.Empty : Model.DataFim.Value.ToString("dd/MM/yyyy"))</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    @foreach (var group in Model.GroupedResult)
+                    {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">
+                                        @Html.Raw("Setor: " + group.Key.Nome)
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="width: 150px;">
+                                        @Html.Raw("N° Protocolo")
+                                    </th>
+                                    <th style="width: 335px;">
+                                        @Html.Raw("Tipo de Documento")
+                                    </th>
+                                    <th style="width: 330px;">
+                                        @Html.Raw("Descrição")
+                                    </th>
+                                    <th class="text-center" style="width: 120px;">
+                                        @Html.Raw("Data Entrada")
+                                    </th>
+                                    <th class="text-center" style="width: 115px;">
+                                        @Html.Raw("Situação")
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var protocolo in group.Values)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            @Html.Raw(protocolo.NumeroAno)
+                                        </td>
+                                        <td>
+                                            @Html.Raw(protocolo.TipoDocumento.Descricao)
+                                        </td>
+                                        <td>
+                                            @Html.Raw(protocolo.Descricao)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.Raw(protocolo.DataAbertura.ToString("dd/MM/yyyy"))
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.Raw(protocolo.DescricaoStatus)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="font-weight: bold;" class="text-right" colspan="5">
+                                        @Html.Raw("Quantidade: " + group.Quantidade)
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    }
+                    <table class="table">
+                        <tr>
+                            <td class="text-right" style="font-weight: bold;">
+                                @Html.Raw("Total Geral: " + Model.Total)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $processoPorSetor = $('#processoPorSetor');
+
+            if ($processoPorSetor.length) {
+                writeView('Relatório de Processos em cada Setor', $processoPorSetor.html());
+            }
+
+            initDatepicker();
+        });
+    </script>
+}

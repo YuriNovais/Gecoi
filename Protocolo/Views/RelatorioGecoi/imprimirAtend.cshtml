@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    @if (Model.Result != null)
+    {
+
+        <div id="processoGeral" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog" style="min-width: 1070px;">
+                <div id="processoGeralContent" class="modal-content" style="border: none; overflow-y: auto;">
+                    <div class="modal-body">
+
+                        <div class="col-md-12">
+                            <table class="table">
+                                <tr>
+                                    <td class="grid-report text-center" style="border: none; border-bottom: 1px solid #000;">
+
+                                        <img src="~/Instituicao/ViewLogomarca" width="85" height="90" alt="Logomarca" title="Logomarca" style="float: left;" />
+                                        <div style="width: 900px;">
+
+
+                                            <h3>Relatório de atendimento</h3>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+</head>
+<body>
+
+    <!--  <div class="col-md-12">
+
+
+          <td class="grid-report text-center" style="border: none; border-bottom: 1px solid #000;">
+
+              <img src="~/Instituicao/ViewLogomarca" width="100" height="100" alt="Logomarca" title="Logomarca" style="float: left;" />
+              <div style="width: 1500px;">
+
+
+                  <h3>Relatório de atendimento</h3>
+              </div>
+      </div> -->
+
+
+
+
+    <div class="modal-dialog" style="min-width: 1070px;">
+        <div id="processoGeralContent" class="modal-content" style="border: none; overflow-y: auto;">
+            <div class="modal-body">
+
+
+                <div class="col-md-12">
+                    <table class="table">
+                        <tr>
+                            <td class="grid-report text-center" style="border: none; border-bottom: 1px solid #000;">
+
+                                <img src="~/Instituicao/ViewLogomarca" width="85" height="90" alt="Logomarca" title="Logomarca" style="float: left;" />
+                                <div style="width: 900px;">
+
+
+                                    <h3>Relatório de atendimento</h3>
+
+                                    <hr size="10" width="50%">
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div class="col-md-120" style="margin-bottom: 15px; margin-top: -15px;">
+                <table class="table table-condensed" style="border-bottom: 1px solid #000;">
+
+
+                    <tr>
+                        <td style="border-bottom: none; border-top: none; width: 10px;">Cliente:</td>
+                        <td style="border-bottom: none; border-top: none; width: 10px;">@Model.Cliente</td>
+                        <td style="border-bottom: none; border-top: none; width: 10px;">Sistema:</td>
+                        <td style="border-bottom: none; border-top: none; width: 10px;">@Model.Sistema</td>
+                        <td style="border-bottom: none; border-top: none; width: 10px;">Motivo:</td>
+                        <td style="border-bottom: none; border-top: none; width: 20px;">@Model.Motivo</td>
+                        <td style="border-bottom: none; border-top: none; width: 10px;">Situação:</td>
+                        <td style="border-bottom: none; border-top: none; width: 20px;">@Model.Status</td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="border-top: none; width: 10px;">De:    </td>
+                        <td style="border-top: none;">@Html.Raw(Model.DataInicio == null ? string.Empty : Model.DataInicio.Value.ToString("dd/MM/yyyy"))</td>
+                        <td style="border-top: none; width: 10px;">A:</td>
+                        <td style="border-top: none;">@Html.Raw(Model.DataFim == null ? string.Empty : Model.DataFim.Value.ToString("dd/MM/yyyy"))</td>
+                    </tr>
+
+                </table>
+            </div>
+
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th bgcolor="#A9A9A9" style="width: 2px;">
+                            @Html.Raw("N° ")
+                        </th>
+                        <th bgcolor="#A9A9A9" style="width: 200px;">
+                            @Html.Raw("Cliente")
+                        </th>
+                        <th bgcolor="#A9A9A9" style="width: 100px;">
+                            @Html.Raw("Solicitante")
+                        </th>
+                        <th bgcolor="#A9A9A9" style="width: 150px;">
+                            @Html.Raw("Motivo")
+                        </th>
+                        <th bgcolor="#A9A9A9" style="width: 300px;">
+                            @Html.Raw("Descrição")
+                        </th>
+                        <th bgcolor="#A9A9A9" style="width: 80px;">
+                            @Html.Raw("Situação")
+                        </th>
+                        <th bgcolor="#A9A9A9" class="text-center" style="width: 80px;">
+                            @Html.Raw("Data")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var atendimento in Model.Result)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @Html.Raw(atendimento.Id)
+                            </td>
+                            <td>
+                                @Html.Raw(atendimento.FuncionarioCliente.Cliente.RazaoSocial)
+                            </td>
+                            <td>
+                                @Html.Raw(atendimento.FuncionarioCliente.Nome)
+                            </td>
+                            <td>
+                                @Html.Raw(atendimento.Motivo.descricao)
+                            </td>
+                            <td>
+                                @Html.Raw(atendimento.Problema)
+                            </td>
+                            <td>
+                                @Html.Raw(atendimento.StatusAtendimento.descricao)
+                            </td>
+                            <td class="text-center">
+                                @Html.Raw(atendimento.data_abertura.ToString("dd/MM/yyyy"))
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td style="font-weight: bold;" class="text-right" colspan="6">
+                            @Html.Raw("Total Geral: " + Model.Total)
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+

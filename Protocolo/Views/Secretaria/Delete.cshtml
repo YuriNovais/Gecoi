@@ -1,0 +1,73 @@
+﻿@model Protocolo.Models.Secretaria
+
+@{
+    ViewBag.Title = "Excluir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb" style="margin-left: -30px; margin-right: -30px;">
+            <li>
+                <a href="@Url.Action("Home", "Protocolo")">
+                    <i class="fa fa-home fa-fw"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Secretaria")">
+                    Secretarias
+                </a>
+            </li>
+            <li class="active">
+                @ViewBag.Title
+            </li>
+        </ol>
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="row">
+        @using (Html.BeginForm("Delete", "Secretaria", FormMethod.Post, new { id = "secretariaForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nome)
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NomeAbreviado)
+                                @Html.EditorFor(model => model.NomeAbreviado, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Sigla)
+                                @Html.EditorFor(model => model.Sigla, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group text-center">
+                                <input type="submit" value="Excluir" class="btn btn-outline btn-danger confirmation-action" />
+                                <input type="button" value="Cancelar" class="btn btn-outline btn-primary" onclick="location.href='@Url.Action("Index", "Secretaria")'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
