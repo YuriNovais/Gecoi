@@ -1,0 +1,325 @@
+﻿@model Protocolo.Models.CreateProtocoloModel
+
+
+@{
+    ViewBag.Title = "Inserindo Novo Protocolo ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style type="text/css">
+        .control-label {
+            font-size: 20px;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb" style="margin-left: -30px; margin-right: -30px;">
+            <li>
+                <a href="@Url.Action("Home", "Protocolo")">
+                    <i class="fa fa-home fa-fw"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Protocolo")">
+                    Protocolos
+                </a>
+            </li>
+            <li class="active">
+                @ViewBag.Title
+            </li>
+        </ol>
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="row">
+        @using (Html.BeginForm("Cadastrar", "Protocolo", FormMethod.Post, new { id = "protocoloForm", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            if (Model.ProtocoloSalvo)
+            {
+                @Html.HiddenFor(model => model.ProtocoloSalvo)
+
+                if (Model.ProtocoloId.HasValue)
+                {
+                    @Html.HiddenFor(model => model.ProtocoloId)
+                }
+            }
+
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.TipoDocumentoId, new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.TipoDocumentoId, null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TipoDocumentoId, string.Empty, new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.Requerente, new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Requerente, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Requerente, string.Empty, new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.RequerenteId)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.AssuntoId, new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.AssuntoId, null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AssuntoId, string.Empty, new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Fornecedor, new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Fornecedor, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.HiddenFor(model => model.FornecedorId)
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.Label("Localidade", new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.PovoadoId, null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
+                                
+                             </div>                            
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
+                                @Html.TextAreaFor(model => model.Descricao, new { rows = "4", cols = "40", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Descricao, string.Empty, new { @class = "text-danger" })
+                            </div>
+
+                            <div id="documentos-container" class="form-group" style="display: none;">
+                                @Html.Label("Documentos")
+
+                                <table class="table table-striped table-bordered table-hover" style="width: auto !important">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-5">
+                                                @Html.Raw("Documento")
+                                            </th>
+                                            <th class="col-md-1 text-center">
+                                                @Html.CheckBox("SelectAll", new { @class = "selectAll" }) @Html.Raw("Entregue?")
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="documents-table">
+                                        @if (Model.DocumentosList.Any())
+                                        {
+                                            for (int i = 0; i < Model.DocumentosList.Count(); i++)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.Hidden("DocumentosList[" + @i + "].Descricao", Model.DocumentosList[i].Descricao)
+                                                        @Html.Raw(Model.DocumentosList[i].Descricao)
+
+                                                        @if (Model.DocumentosList[i].Obrigatorio)
+                                                        {
+                                                            @Html.Raw(" (Obrigatório)")
+                                                        }
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @Html.CheckBox("DocumentosList[" + @i + "].Entregue", Model.DocumentosList[i].Entregue, new { @class = "checkbox_class" })
+                                                        @Html.Hidden("DocumentosList[" + @i + "].Obrigatorio", Model.DocumentosList[i].Obrigatorio)
+                                                        @Html.Hidden("DocumentosList[" + @i + "].Id", Model.DocumentosList[i].Id)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                @Html.Label("Anexos")
+                                <input type="file" id="Anexo" name="anexo" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group text-center">
+                                <input type="submit" value="Salvar" class="btn btn-outline btn-primary confirmation-action" />
+                                <input type="button" value="Cancelar" class="btn btn-outline btn-primary" onclick="location.href='@Url.Action("Index", "Protocolo")'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div id="enviarConfirmationDialog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+         data-backdrop="static" data-keyboard="false" style="z-index: 1051;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Protocolo cadastrado com sucesso!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Número do Protocolo: @Model.NumeroProtocolo</p>
+                    <p class="text-warning"><small>Deseja enviar o protocolo para outro setor?</small></p>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-danger" id="naoEnviar">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmEnviar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // Caso a lista tenha retornado povoada
+                (function () {
+                    if ($('#documents-table tr').length > 0) {
+                        $('#documentos-container').show();
+                    }
+
+                    var $protocoloSalvo = $('#ProtocoloSalvo').val();
+
+                    if ($protocoloSalvo === 'True') {
+                        $('#enviarConfirmationDialog').modal('show');
+                    }
+                })();
+
+                $(document).on('click', '#naoEnviar', function () {
+                    window.location.replace('@Url.Action("RedirectToIndex", "Protocolo")');
+                });
+
+                $(document).on('click', '#confirmEnviar', function () {
+                    var url = '@Url.Action("EnviarProtocolo", "Protocolo", new { id = "_id_" })'
+                        .replace('_id_', $('#ProtocoloId').val());
+
+                    window.location.replace(url);
+                });
+
+                var pessoaCache = {};
+
+                $('#AssuntoId').on('change', function () {
+                    // clear table
+                    $('#documentos-container').hide();
+                    $('#documents-table').empty();
+                    $('.selectAll').prop('checked', false);
+
+                    if ($(this).val()) {
+                        GetDocuments();
+                    }
+                });
+
+                function GetDocuments() {
+                    var url = '@Url.Action("GetDocuments", "Protocolo", new { id = "_id_" })'
+                        .replace('_id_', $('#AssuntoId').val());
+
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        dataType: "JSON",
+                        success: function (documents) {
+                            if (documents.length > 0) {
+                                var rows = '';
+
+                                $.each(documents, function (index, document) {
+                                    rows += '<tr><td>';
+                                    rows += "<input name='DocumentosList[" + index + "].Descricao' type='hidden' value='" + document.Descricao + "'>";
+                                    rows += document.Descricao
+
+                                    if (document.Obrigatorio) {
+                                        rows += ' (Obrigatório)';
+                                    }
+
+                                    rows += '</td>';
+
+                                    rows += '<td class="text-center">';
+                                    rows += "<input class='checkbox_class' id='DocumentosList_" + index + "__Entregue' name='DocumentosList[" + index + "].Entregue' type='checkbox' value='true'>";
+                                    rows += "<input name='DocumentosList[" + index + "].Entregue' type='hidden' value='" + document.Entregue + "'>";
+                                    rows += "<input name='DocumentosList[" + index + "].Obrigatorio' type='hidden' value='" + document.Obrigatorio + "'>";
+                                    rows += "<input name='DocumentosList[" + index + "].Id' type='hidden' value='" + document.Id + "'>";
+                                    rows += '</td></tr>';
+                                });
+
+                                $('#documents-table').html(rows);
+                                $('#documentos-container').show();
+                            }
+                        }
+                    });
+                }
+
+                $('#Requerente').autocomplete({
+                    minLength: 3,
+                    source: GetPessoas,
+                    select: function (event, ui) {
+                        $('#RequerenteId').val(ui.item.id);
+                    },
+                    change: function (event, ui) {
+                        if (!ui.item) {
+                            $(this).val('');
+                            $('#RequerenteId').val('');
+                        }
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function () { }
+                    }
+                });
+
+                $('#Fornecedor').autocomplete({
+                    minLength: 3,
+                    source: GetPessoas,
+                    select: function (event, ui) {
+                        $('#FornecedorId').val(ui.item.id);
+                    },
+                    change: function (event, ui) {
+                        if (!ui.item) {
+                            $(this).val('');
+                            $('#FornecedorId').val('');
+                        }
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function () { }
+                    }
+                });
+
+                function GetPessoas(request, response) {
+                    if (request.term in pessoaCache) {
+                        response(pessoaCache[request.term]);
+                        return;
+                    }
+
+                    $.ajax({
+                        url: '@Url.Action("AutocompletePessoas", "Protocolo")' + '?term=' + request.term,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            var dados = $.map(data, function (item) {
+                                return {
+                                    value: item.NomeRazao,
+                                    id: item.Id
+                                };
+                            });
+
+                            pessoaCache[request.term] = dados;
+
+                            response(dados);
+                        }
+                    });
+                }
+            });
+        </script>
+    }
+</div>

@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Protocolo.Models.Tarefa>
+
+@{
+    ViewBag.Title = "Requisições Abertas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="~/FrontEnd/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb" style="margin-left: -30px; margin-right: -30px;">
+            <li>
+                <a href="@Url.Action("Home", "Protocolo")">
+                    <i class="fa fa-home fa-fw"></i> 
+                </a>
+            </li>
+            <li class="active">
+                @ViewBag.Title
+            </li>
+        </ol>
+        <h1 class="page-header">@ViewBag.Title</h1>
+        @{ Html.RenderPartial("_Alerts"); }
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading text-right" style="padding-right: 30px;">
+                <input type="button" value="Nova Requisição" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Tarefa")'" />
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-setor">
+                        <thead>
+                            <tr>
+                                <th class="col-md-1 text-center">
+                                    N°
+                                </th>
+                                <th class="col-md-2 text-center">
+                                    Cliente
+                                </th>
+                                <th class="col-md-2 text-center">
+                                    Motivo
+                                </th>
+                                <th class="col-md-2 text-center">
+                                    Sistema
+                                </th>
+
+                                <th class="col-md-4 text-center">
+                                    Descrição
+                                </th>
+                                <th class="col-md-1 text-center">
+                                    Status
+                                </th>
+                                <th class="col-md-1 text-center">
+                                    Usuario
+                                </th>
+                                <th class="col-md-2 text-center">
+                                    Data
+                                </th>
+                                <th class="col-md-2 text-center">
+                                    Ações
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @ProtocoloHelper.Truncate(item.FuncionarioCliente.Cliente.RazaoSocial, 20)
+                                </td>
+                                <td>
+                                    @ProtocoloHelper.Truncate(item.Motivo.descricao, 20)
+                                </td>
+                                <td>
+                                    @ProtocoloHelper.Truncate(item.Tela.Descricao, 10)
+                                </td>
+
+                                <td>
+                                    @ProtocoloHelper.Truncate(item.Descrição, 20)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StatusTarefa.descricao)
+                                </td>
+                                <td>
+                                    @ProtocoloHelper.Truncate(item.Usuario.Logon, 20)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.data_abertura)
+                                </td>
+
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info btn-group-sm" title="Alterar" onclick="location.href = '@Url.Action("Edit", "Tarefa", new { id = item.Id })'"><i class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-default" title="Visualizar" onclick="location.href = '@Url.Action("Details", "Tarefa", new { id = item.Id })'"><i class="fa fa-search-plus"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dataTables-setor').dataTable({
+                "language": {
+                    "url": "@Url.Content("~/Content/JSON/datatables-portugues.json")"
+                },
+                "lengthMenu": [[10, 15, 25, 50], [10, 15, 25, 50]],
+                'order': [[1, 'asc']]
+            });
+        });
+    </script>
+    <!-- DataTables -->
+    <script src="~/FrontEnd/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/FrontEnd/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+}

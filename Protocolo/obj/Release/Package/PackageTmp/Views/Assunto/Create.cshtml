@@ -1,0 +1,103 @@
+﻿@model Protocolo.Models.CreateAssuntoModel
+
+@{
+    ViewBag.Title = "Cadastrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb" style="margin-left: -30px; margin-right: -30px;">
+            <li>
+                <a href="@Url.Action("Home", "Protocolo")">
+                    <i class="fa fa-home fa-fw"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Assunto")">
+                    Assuntos
+                </a>
+            </li>
+            <li class="active">
+                @ViewBag.Title
+            </li>
+        </ol>
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="row">
+        @using (Html.BeginForm("Cadastrar", "Assunto", FormMethod.Post, new { id = "assuntoForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.Prazo, new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Prazo, new { htmlAttributes = new { @class = "form-control", @mask = "9?99" } })
+                                @Html.ValidationMessageFor(model => model.Prazo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                @Html.Label("Documentos")
+
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tr>
+                                        <th class="col-md-1 text-center">
+                                            @Html.CheckBox("SelectAll", new { @class = "selectAll" })
+                                        </th>
+                                        <th>
+                                            @Html.Raw("Descrição")
+                                        </th>
+                                        <th class="col-md-2 text-center">
+                                            @Html.Raw("Obrigatório")
+                                        </th>
+                                    </tr>
+                                    @for (int i = 0; i < Model.AssuntoDocumentoList.Count(); i++)
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                @Html.CheckBox("AssuntoDocumentoList[" + @i + "].Selecionado", Model.AssuntoDocumentoList[i].Selecionado, new { @class = "checkbox_class" })
+                                                @Html.Hidden("AssuntoDocumentoList[" + @i + "].Id", Model.AssuntoDocumentoList[i].Id)
+                                            </td>
+                                            <td>
+                                                @Html.Raw(Model.AssuntoDocumentoList[i].Descricao)
+                                                @Html.Hidden("AssuntoDocumentoList[" + @i + "].Descricao", Model.AssuntoDocumentoList[i].Descricao)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.CheckBox("AssuntoDocumentoList[" + @i + "].Obrigatorio", Model.AssuntoDocumentoList[i].Obrigatorio)
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <input type="button" value="Salvar" class="btn btn-outline btn-primary confirmation-action" />
+                                <input type="button" value="Cancelar" class="btn btn-outline btn-primary" onclick="location.href='@Url.Action("Index", "Assunto")'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

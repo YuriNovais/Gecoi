@@ -1,0 +1,221 @@
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\Protocolo.dll.config
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\Protocolo.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\Protocolo.pdb
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\Antlr3.Runtime.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\EntityFramework.SqlServer.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\Newtonsoft.Json.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.Helpers.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.Mvc.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.Optimization.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.Razor.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.WebPages.Deployment.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.WebPages.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.WebPages.Razor.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\WebGrease.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\EntityFramework.SqlServer.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.Helpers.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.Mvc.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.Razor.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.WebPages.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.WebPages.Deployment.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.WebPages.Razor.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\System.Web.Optimization.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\Antlr3.Runtime.pdb
+D:\EXITO\VisualStudio\Gecoi\Protocolo\bin\Newtonsoft.Json.xml
+D:\EXITO\VisualStudio\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.CoreCompileInputs.cache
+D:\EXITO\VisualStudio\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.CopyComplete
+D:\EXITO\VisualStudio\Gecoi\Protocolo\obj\Release\Protocolo.dll
+D:\EXITO\VisualStudio\Gecoi\Protocolo\obj\Release\Protocolo.pdb
+D:\EXITO\VisualStudio\Gecoi\Protocolo\obj\Release\GecoiWeb.csprojAssemblyReference.cache
+C:\EXITO\VS\Gecoi\Protocolo\bin\Protocolo.dll.config
+C:\EXITO\VS\Gecoi\Protocolo\bin\Protocolo.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\Protocolo.pdb
+C:\EXITO\VS\Gecoi\Protocolo\bin\Antlr3.Runtime.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\EntityFramework.SqlServer.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\Newtonsoft.Json.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.Helpers.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.Mvc.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.Optimization.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.Razor.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.WebPages.Deployment.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.WebPages.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.WebPages.Razor.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\WebGrease.dll
+C:\EXITO\VS\Gecoi\Protocolo\bin\EntityFramework.SqlServer.xml
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.Helpers.xml
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.Mvc.xml
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.Razor.xml
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.WebPages.xml
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.WebPages.Deployment.xml
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.WebPages.Razor.xml
+C:\EXITO\VS\Gecoi\Protocolo\bin\System.Web.Optimization.xml
+C:\EXITO\VS\Gecoi\Protocolo\bin\Antlr3.Runtime.pdb
+C:\EXITO\VS\Gecoi\Protocolo\bin\Newtonsoft.Json.xml
+C:\EXITO\VS\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.CoreCompileInputs.cache
+C:\EXITO\VS\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.CopyComplete
+C:\EXITO\VS\Gecoi\Protocolo\obj\Release\Protocolo.dll
+C:\EXITO\VS\Gecoi\Protocolo\obj\Release\Protocolo.pdb
+C:\EXITO\VS\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.AssemblyReference.cache
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\Protocolo.dll.config
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\Protocolo.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\Protocolo.pdb
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\Antlr3.Runtime.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\EntityFramework.SqlServer.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\Newtonsoft.Json.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.Helpers.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.Mvc.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.Optimization.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.Razor.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.WebPages.Deployment.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.WebPages.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.WebPages.Razor.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\WebGrease.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\EntityFramework.SqlServer.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.Helpers.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.Mvc.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.Razor.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.WebPages.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.WebPages.Deployment.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.WebPages.Razor.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\System.Web.Optimization.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\Antlr3.Runtime.pdb
+D:\EXITO\Vs2017\Gecoi\Protocolo\bin\Newtonsoft.Json.xml
+D:\EXITO\Vs2017\Gecoi\Protocolo\obj\Release\GecoiWeb.csprojAssemblyReference.cache
+D:\EXITO\Vs2017\Gecoi\Protocolo\obj\Release\Protocolo.Migrations.TabelasRelacionadas.resources
+D:\EXITO\Vs2017\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.GenerateResource.cache
+D:\EXITO\Vs2017\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.CoreCompileInputs.cache
+D:\EXITO\Vs2017\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.CopyComplete
+D:\EXITO\Vs2017\Gecoi\Protocolo\obj\Release\Protocolo.dll
+D:\EXITO\Vs2017\Gecoi\Protocolo\obj\Release\Protocolo.pdb
+C:\EXITO\VS\Gecoi\Protocolo\obj\Release\Protocolo.Migrations.TabelasRelacionadas.resources
+C:\EXITO\VS\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.GenerateResource.cache
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\Protocolo.dll.config
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\Protocolo.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\Protocolo.pdb
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\Antlr3.Runtime.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\EntityFramework.SqlServer.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\Newtonsoft.Json.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.Helpers.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.Mvc.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.Optimization.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.Razor.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.WebPages.Deployment.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.WebPages.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.WebPages.Razor.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\WebGrease.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\EntityFramework.SqlServer.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.Helpers.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.Mvc.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.Razor.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.WebPages.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.WebPages.Deployment.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.WebPages.Razor.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\System.Web.Optimization.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\Antlr3.Runtime.pdb
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\bin\Newtonsoft.Json.xml
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\obj\Release\Protocolo.Migrations.TabelasRelacionadas.resources
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\obj\Release\GecoiWeb.csproj.GenerateResource.cache
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\obj\Release\GecoiWeb.csproj.CoreCompileInputs.cache
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\obj\Release\GecoiWeb.csproj.CopyComplete
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\obj\Release\Protocolo.dll
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\obj\Release\Protocolo.pdb
+C:\EXITO\VS\old\Gecoi24.08\Protocolo\obj\Release\GecoiWeb.csproj.AssemblyReference.cache
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\Protocolo.dll.config
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\Protocolo.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\Protocolo.pdb
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\Antlr3.Runtime.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\EntityFramework.SqlServer.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\Newtonsoft.Json.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.Helpers.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.Mvc.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.Optimization.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.Razor.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.WebPages.Deployment.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.WebPages.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.WebPages.Razor.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\WebGrease.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\EntityFramework.SqlServer.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.Helpers.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.Mvc.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.Razor.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.WebPages.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.WebPages.Deployment.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.WebPages.Razor.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\System.Web.Optimization.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\Antlr3.Runtime.pdb
+C:\EXITO\VS\Gecoi30_08\Protocolo\bin\Newtonsoft.Json.xml
+C:\EXITO\VS\Gecoi30_08\Protocolo\obj\Release\GecoiWeb.csproj.AssemblyReference.cache
+C:\EXITO\VS\Gecoi30_08\Protocolo\obj\Release\Protocolo.Migrations.TabelasRelacionadas.resources
+C:\EXITO\VS\Gecoi30_08\Protocolo\obj\Release\GecoiWeb.csproj.GenerateResource.cache
+C:\EXITO\VS\Gecoi30_08\Protocolo\obj\Release\GecoiWeb.csproj.CoreCompileInputs.cache
+C:\EXITO\VS\Gecoi30_08\Protocolo\obj\Release\GecoiWeb.csproj.CopyComplete
+C:\EXITO\VS\Gecoi30_08\Protocolo\obj\Release\Protocolo.dll
+C:\EXITO\VS\Gecoi30_08\Protocolo\obj\Release\Protocolo.pdb
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\Protocolo.dll.config
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\Protocolo.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\Protocolo.pdb
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\Antlr3.Runtime.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\EntityFramework.SqlServer.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\Newtonsoft.Json.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.Helpers.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.Mvc.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.Optimization.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.Razor.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.WebPages.Deployment.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.WebPages.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.WebPages.Razor.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\WebGrease.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\EntityFramework.SqlServer.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.Helpers.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.Mvc.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.Razor.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.WebPages.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.WebPages.Deployment.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.WebPages.Razor.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\System.Web.Optimization.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\Antlr3.Runtime.pdb
+D:\EXITO\Vs2019\Gecoi\Protocolo\bin\Newtonsoft.Json.xml
+D:\EXITO\Vs2019\Gecoi\Protocolo\obj\Release\Protocolo.Migrations.TabelasRelacionadas.resources
+D:\EXITO\Vs2019\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.GenerateResource.cache
+D:\EXITO\Vs2019\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.CoreCompileInputs.cache
+D:\EXITO\Vs2019\Gecoi\Protocolo\obj\Release\GecoiWeb.csproj.CopyComplete
+D:\EXITO\Vs2019\Gecoi\Protocolo\obj\Release\Protocolo.dll
+D:\EXITO\Vs2019\Gecoi\Protocolo\obj\Release\Protocolo.pdb
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\Protocolo.dll.config
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\Protocolo.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\Protocolo.pdb
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\Antlr3.Runtime.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\EntityFramework.SqlServer.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\Newtonsoft.Json.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.Helpers.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.Mvc.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.Optimization.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.Razor.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.WebPages.Deployment.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.WebPages.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.WebPages.Razor.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\WebGrease.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\EntityFramework.SqlServer.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.Helpers.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.Mvc.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.Razor.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.WebPages.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.WebPages.Deployment.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.WebPages.Razor.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\System.Web.Optimization.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\Antlr3.Runtime.pdb
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\bin\Newtonsoft.Json.xml
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\obj\Release\GecoiWeb.csproj.AssemblyReference.cache
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\obj\Release\Protocolo.Migrations.TabelasRelacionadas.resources
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\obj\Release\GecoiWeb.csproj.GenerateResource.cache
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\obj\Release\GecoiWeb.csproj.CoreCompileInputs.cache
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\obj\Release\GecoiWeb.csproj.CopyComplete
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\obj\Release\Protocolo.dll
+C:\EXITO\VS\Gecoi_versão aldeir\Protocolo\obj\Release\Protocolo.pdb

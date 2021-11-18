@@ -1,0 +1,120 @@
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\Protocolo.dll.config
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\Protocolo.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\Protocolo.pdb
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\Antlr3.Runtime.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\Newtonsoft.Json.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.Helpers.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.Mvc.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.Optimization.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.Razor.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.WebPages.Deployment.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.WebPages.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.WebPages.Razor.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\WebGrease.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.Helpers.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.Mvc.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.Optimization.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.Razor.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.WebPages.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.WebPages.Deployment.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\System.Web.WebPages.Razor.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\Antlr3.Runtime.pdb
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\Newtonsoft.Json.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\obj\Debug\Protocolo.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\obj\Debug\Protocolo.pdb
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\EntityFramework.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\EntityFramework.SqlServer.dll
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\EntityFramework.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\bin\EntityFramework.SqlServer.xml
+C:\Users\roque.santos\Documents\Visual Studio 2013\Projects\Protocolo\Protocolo\obj\Debug\Protocolo.csprojResolveAssemblyReference.cache
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Protocolo.dll.config
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Protocolo.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Protocolo.pdb
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Antlr3.Runtime.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\EntityFramework.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\EntityFramework.SqlServer.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Newtonsoft.Json.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Helpers.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Mvc.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Optimization.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Razor.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Deployment.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Razor.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\WebGrease.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\EntityFramework.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\EntityFramework.SqlServer.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Helpers.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Mvc.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Razor.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Deployment.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Razor.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Optimization.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Antlr3.Runtime.pdb
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Newtonsoft.Json.xml
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.dll
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.pdb
+R:\Source\Workspaces\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.csprojResolveAssemblyReference.cache
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Protocolo.dll.config
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Protocolo.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Protocolo.pdb
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Antlr3.Runtime.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\EntityFramework.SqlServer.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Newtonsoft.Json.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Helpers.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Mvc.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Optimization.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Razor.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Deployment.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Razor.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\WebGrease.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\EntityFramework.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\EntityFramework.SqlServer.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Helpers.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Mvc.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Razor.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Deployment.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Razor.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\System.Web.Optimization.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Antlr3.Runtime.pdb
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\bin\Newtonsoft.Json.xml
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.csprojResolveAssemblyReference.cache
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.dll
+C:\Users\marce\Source\Workspaces\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.pdb
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\Protocolo.dll.config
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\Protocolo.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\Protocolo.pdb
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\Antlr3.Runtime.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\EntityFramework.SqlServer.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\Microsoft.Web.Infrastructure.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\Newtonsoft.Json.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.Helpers.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.Mvc.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.Optimization.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.Razor.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Deployment.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Razor.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\WebGrease.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\EntityFramework.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\EntityFramework.SqlServer.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.Helpers.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.Mvc.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.Razor.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Deployment.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.WebPages.Razor.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\System.Web.Optimization.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\Antlr3.Runtime.pdb
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\bin\Newtonsoft.Json.xml
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.csprojAssemblyReference.cache
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.csproj.CoreCompileInputs.cache
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.csproj.CopyComplete
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.dll
+E:\Desenvolvimento-Web\Protocolo\Protocolo\Protocolo\obj\Debug\Protocolo.pdb

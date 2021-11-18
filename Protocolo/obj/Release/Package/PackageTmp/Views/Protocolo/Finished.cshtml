@@ -1,0 +1,102 @@
+﻿@model List<Protocolo.Models.FinishedProtocoloModel>
+
+@{
+    ViewBag.Title = "Finalizados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb" style="margin-left: -30px; margin-right: -15px;">
+        <li>
+            <a href="@Url.Action("Home", "Protocolo")">
+                <i class="fa fa-home fa-fw"></i> Home
+            </a>
+        </li>
+        <li class="active">
+            @ViewBag.Title
+        </li>
+    </ol>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-1">
+                    <i class="fa fa-check-square-o fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-left">
+                    <h1>@ViewBag.Title</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+@if (Model.Any())
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-finished">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            @Html.DisplayName("Número do Protocolo")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Assunto")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Data de Finalização")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.NumeroAno)
+                            </td>
+                            <td>
+                                @ProtocoloHelper.Truncate(item.Assunto, 25)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataFinalizacao)
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-primary btn-circle" title="Visualizar" aria-label="Visualizar" onclick="location.href = '@Url.Action("Visualizar", "Protocolo", new { id = item.ProtocoloId })'">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @section scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#dataTables-finished').dataTable({
+                    'language': {
+                        'url': '@Url.Content("~/Content/JSON/datatables-portugues.json")'
+                    },
+                    'sort': false,
+                    'paginate': false,
+                    'info': false
+                });
+            });
+        </script>
+    }
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        Sua caixa de protocolos Finalizados está vazia.
+    </div>
+}
+</div>
