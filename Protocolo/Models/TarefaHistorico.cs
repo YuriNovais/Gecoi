@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Protocolo.Models
 {
@@ -29,6 +30,7 @@ namespace Protocolo.Models
         public DateTime Datahistorico { get; set; }
 
         [Required]
+        [AllowHtml]
         [StringLength(500)]
         [Column("descricao")]
         [Display(Name = "Descrição")]

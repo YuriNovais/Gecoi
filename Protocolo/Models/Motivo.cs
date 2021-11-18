@@ -7,6 +7,7 @@ namespace Protocolo.Models
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web.Mvc;
 
     [Table("motivo")]
     public class Motivo
@@ -17,6 +18,7 @@ namespace Protocolo.Models
         public Int32 id { get; set; }
 
         [Required]
+        [AllowHtml]
         [StringLength(50)]
         [Column("descricao")]
         [Display(Name ="Descrição")]

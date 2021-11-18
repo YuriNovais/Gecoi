@@ -13,11 +13,11 @@ namespace Protocolo.Models
             //PerfisList = new List<string>();
         }
         public int? Id { get; set; }
-
+        [AllowHtml]
         [Required]
         [StringLength(20)]
         public string Logon { get; set; }
-
+        [AllowHtml]
         [Required]
         [StringLength(60)]
         public string Nome { get; set; }
@@ -27,7 +27,7 @@ namespace Protocolo.Models
 
         [StringLength(14)]
         public string Celular { get; set; }
-
+        [AllowHtml]
         [EmailAddress]
         [StringLength(100)]
         [DataType(DataType.EmailAddress)]

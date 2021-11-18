@@ -10,6 +10,7 @@ namespace Protocolo.Models
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web.Mvc;
 
     [Table("sistema")]
     public class Sistema
@@ -20,6 +21,7 @@ namespace Protocolo.Models
         public Int32 Id { get; set; }
 
         [Required]
+        [AllowHtml]
         [StringLength(50)]
         [Column("nome")]
         public string Nome { get; set; }

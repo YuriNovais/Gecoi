@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace Protocolo.Models
 {
@@ -44,6 +45,7 @@ namespace Protocolo.Models
 
 
         [Required]
+        [AllowHtml]
         [StringLength(500)]
         [Column("problema")]
         [Display(Name = "Descrição")]
@@ -61,6 +63,7 @@ namespace Protocolo.Models
         public DateTime data_fechamento { get; set; }
 
         [NotMapped]
+        [AllowHtml]
         [StringLength(100)]
         [Display(Name = "Histórico/Observação")]
         public string HistoricoObservacao { get; set; }

@@ -18,6 +18,7 @@ namespace Protocolo.Models
 
         [Required]
         [StringLength(50)]
+        [AllowHtml]
         [Column("descricao")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }

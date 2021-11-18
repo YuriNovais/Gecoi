@@ -20,12 +20,14 @@ namespace Protocolo.Models
         public Int32 Id { get; set; }
 
         [Required]
+        [AllowHtml]
         [StringLength(50)]
         [Column("Nome")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         [StringLength(50)]
+        [AllowHtml]
         [Column("email")]
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
