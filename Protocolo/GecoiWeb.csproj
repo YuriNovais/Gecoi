@@ -172,6 +172,7 @@
     <Compile Include="Models\AssuntoModel.cs" />
     <Compile Include="Models\AtendimentoAnexo.cs" />
     <Compile Include="Models\AtendimentoHistorico.cs" />
+    <Compile Include="Models\AtendimentoModelView.cs" />
     <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\BaseContext.cs" />
     <Compile Include="Models\Carro.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Models\NumeroProtocolo.cs" />
     <Compile Include="Models\PessoaModel.cs" />
     <Compile Include="Models\Povoado.cs" />
+    <Compile Include="Models\prioridade.cs" />
     <Compile Include="Models\PrioridadeRequisicao.cs" />
     <Compile Include="Models\Protocolo.cs" />
     <Compile Include="Models\ProtocoloAnexo.cs" />
@@ -232,18 +234,21 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chosen\chosen-sprite.png" />
     <Content Include="Content\Chosen\chosen.min.css" />
+    <Content Include="Content\css\tela.css" />
     <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\dataTables.responsive.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\LogoExito.png" />
     <Content Include="Content\Images\logoexitonovopng..png" />
+    <Content Include="Content\Images\oie_transparent.png" />
     <Content Include="Content\Images\sort_asc.png" />
     <Content Include="Content\Images\sort_asc_disabled.png" />
     <Content Include="Content\Images\sort_both.png" />
     <Content Include="Content\Images\sort_desc.png" />
     <Content Include="Content\Images\sort_desc_disabled.png" />
     <Content Include="Content\Images\topo-exito.jpg" />
+    <Content Include="Content\Images\fundo_login.png" />
     <Content Include="Content\jquery.dataTables.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\jquery.dataTables_themeroller.css" />
@@ -2358,6 +2363,26 @@
     <Content Include="FrontEnd\plugins\summernote\summernote.min.js.map" />
     <Content Include="FrontEnd\plugins\toastr\toastr.js.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile10.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile11.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile12.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile13.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile14.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile15.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile16.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile17.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile18.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile19.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile6.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile7.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile8.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile9.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Protocolo.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
@@ -2373,6 +2398,8 @@
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.maskedinput.js" />
     <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -2395,6 +2422,8 @@
     <Content Include="Scripts\sb-admin-2.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="SQL\Dashboard\SelectDadosDashboard.sql" />
+    <Content Include="Content\Images\fundologin.gif" />
+    <Content Include="Content\Images\logomarcar.jpeg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2525,7 +2554,6 @@
     <Content Include="Views\Atendimento\Pendentedia.cshtml" />
     <Content Include="Views\Atendimento\Resolvido.cshtml" />
     <Content Include="Views\Atendimento\Pendente.cshtml" />
-    <Content Include="Views\Atendimento\.cshtml" />
     <Content Include="Views\Atendimento\atendimentoMes.cshtml" />
     <Content Include="Views\Atendimento\DuvidaMes.cshtml" />
     <Content Include="Views\Atendimento\ErroMes.cshtml" />
@@ -2535,6 +2563,9 @@
     <Content Include="Views\Tarefa\Aberto30dias.cshtml" />
     <Content Include="Views\Tarefa\TarefaCorrecoes.cshtml" />
     <Content Include="Views\Tarefa\TarefaMelhorias.cshtml" />
+    <Content Include="Views\Atendimento\_IndexGrid.cshtml" />
+    <Content Include="Views\Atendimento\_IndexSearch.cshtml" />
+    <Content Include="Views\Tarefa\_IndexGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

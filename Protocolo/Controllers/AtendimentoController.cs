@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -21,14 +22,159 @@ namespace Protocolo.Controllers
 
         }
 
+        [Authorize(Roles = "Administrador,Gestor")]
+        [HttpPost, ActionName("Filtrar")]
+        public ActionResult Filtrar(SearchGeneral FiltrosDaTela)
+        {
+
+
+
+            var q = db.Atendimentos.AsQueryable();
+            if (FiltrosDaTela.ClienteId > 0)
+                q = q.Where(c => c.FuncionarioCliente.ClienteId == FiltrosDaTela.ClienteId);
+
+            if (FiltrosDaTela.SolicitanteId > 0)
+                q = q.Where(c => c.FuncionarioCliente.Id == FiltrosDaTela.SolicitanteId);
+
+            if (FiltrosDaTela.StatusId > 0)
+                q = q.Where(c => c.StatusAtendimento.Id == FiltrosDaTela.StatusId);
+
+            if (FiltrosDaTela.MotivoId > 0)
+                q = q.Where(c => c.Motivo.id == FiltrosDaTela.MotivoId);
+
+            if (FiltrosDaTela.SistemaId > 0)
+                q = q.Where(c => c.Tela.Sistema.Id == FiltrosDaTela.SistemaId);
+
+            if (FiltrosDaTela.UsuarioId > 0)
+                q = q.Where(c => c.Usuario.Id == FiltrosDaTela.UsuarioId);
+
+            if (FiltrosDaTela.DataInicio != null)
+            {
+                q = q.Where(c => c.data_abertura >= FiltrosDaTela.DataInicio);
+            }
+
+            if (FiltrosDaTela.DataFim != null)
+            {
+                FiltrosDaTela.DataFim = AdjustDataFim(FiltrosDaTela.DataFim);
+                PeriodoInvalido(FiltrosDaTela);
+                q = q.Where(c => c.data_abertura <= FiltrosDaTela.DataFim);
+
+            }
+
+            //-- se foi chamado pelo botão, carrega a view na tela com o grid
+            if (Request.IsAjaxRequest())
+                return PartialView("_IndexGrid", q.ToList());
+
+            PreencherViewBag();
+
+
+            SearchGeneral Filtros = new SearchGeneral();
+
+            q = q.Where(c => c.StatusAtendimentoId == 1);
+                               
+
+            Filtros.Atendimentos = q.ToList();
+
+
+            //-- se não foi chamado pelo ajax (botão do indexsearch) traz apenas os filtros
+
+            return View("Index", Filtros);
+
+        }
 
 
         // GET: Atendimento
         [Authorize(Roles = "Administrador,Gestor")]
-        public ActionResult Index()
+        public ActionResult Index(SearchGeneral FiltrosDaTela)
         {
-            var atendimentos = db.Atendimentos.Include(a => a.Motivo).Include(a => a.Tela).Include(a => a.FuncionarioCliente).Include(a => a.Usuario);
-            return View(atendimentos.ToList());
+
+            var q = db.Atendimentos.AsQueryable();
+            if (FiltrosDaTela.ClienteId > 0)
+                q = q.Where(c => c.FuncionarioCliente.ClienteId == FiltrosDaTela.ClienteId);
+
+            if (FiltrosDaTela.SolicitanteId > 0)
+                q = q.Where(c => c.FuncionarioCliente.Id == FiltrosDaTela.SolicitanteId);
+
+            if (FiltrosDaTela.StatusId > 0)
+                q = q.Where(c => c.StatusAtendimento.Id == FiltrosDaTela.StatusId);
+
+            if (FiltrosDaTela.MotivoId > 0)
+                q = q.Where(c => c.Motivo.id == FiltrosDaTela.MotivoId);
+
+            if (FiltrosDaTela.SistemaId > 0)
+                q = q.Where(c => c.Tela.Sistema.Id == FiltrosDaTela.SistemaId);
+
+            if (FiltrosDaTela.UsuarioId > 0)
+                q = q.Where(c => c.Usuario.Id == FiltrosDaTela.UsuarioId);
+
+            if (FiltrosDaTela.DataInicio != null)
+            {
+                q = q.Where(c => c.data_abertura >= FiltrosDaTela.DataInicio);//  <= c.data_abertura.CompareTo(FiltrosDaTela.DataFim) );
+            }
+
+            if (FiltrosDaTela.DataFim != null)
+            {
+                FiltrosDaTela.DataFim = AdjustDataFim(FiltrosDaTela.DataFim);
+                PeriodoInvalido(FiltrosDaTela);
+                q = q.Where(c => c.data_abertura <= FiltrosDaTela.DataFim);
+
+            }
+            //-- se foi chamado pelo botão, carrega a view na tela com o grid
+            if (Request.IsAjaxRequest())
+                return PartialView("_IndexGrid", q.ToList());
+
+            PreencherViewBag();
+
+
+            SearchGeneral Filtros = new SearchGeneral();
+
+            Usuario USUARIOLOGADO = GetUsuarioLogado();
+
+            q = q.Where(c => c.Usuario.Id == USUARIOLOGADO.Id);
+            q = q.Where(c => c.StatusAtendimentoId == 1);
+            q = q.OrderByDescending(c => c.data_abertura);
+
+            Filtros.Atendimentos = q.ToList();
+
+
+            //-- se não foi chamado pelo ajax (botão do indexsearch) traz apenas os filtros
+
+            return View("Index", Filtros);
+
+        }
+
+                
+
+        private bool PeriodoInvalido(SearchGenericReportModel searchModel)
+        {
+            if (searchModel.DataInicio != null && searchModel.DataFim != null && searchModel.DataInicio > searchModel.DataFim)
+            {
+                Danger("Data Inícial deve ser inferior a Data Final.");
+
+                PreencherViewBag();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private DateTime? AdjustDataFim(DateTime? dateTime)
+        {
+            return dateTime.HasValue ? dateTime.Value.AddHours(23).AddMinutes(59).AddSeconds(59) : dateTime;
+        }
+
+
+
+        private void PreencherViewBag()
+        {
+            ViewBag.SistemaId = new SelectList(db.Sistemas.OrderBy(t => t.Nome), "Id", "Nome");
+            ViewBag.ClienteId = new SelectList(db.Clientes.OrderBy(a => a.RazaoSocial), "Id", "RazaoSocial");
+            ViewBag.SolicitanteId = new SelectList(db.FuncionarioClientes.OrderBy(s => s.Nome), "Id", "Nome");
+            ViewBag.Motivoid = new SelectList(db.Motivos.OrderBy(s => s.descricao), "Id", "Descricao");
+            ViewBag.Usuarioid = new SelectList(db.Usuarios.OrderBy(s => s.Logon), "Id", "Logon");
+            ViewBag.StatusId = new SelectList(db.StatusAtendimentos.OrderBy(s => s.descricao), "Id", "descricao");
+            ViewBag.SituacaoId = new SelectList(db.StatusTarefas.OrderBy(s => s.descricao), "Id", "descricao");
         }
 
         // GET: Atendimento/Details/5
@@ -103,6 +249,9 @@ namespace Protocolo.Controllers
 
                 var historico = new AtendimentoHistorico
                 {
+
+
+
                     AtendimentoId = atendimento.Id,
                     Datahistorico = DateTime.Now,
                     Solucao = "Abertura do Atendimento",
@@ -129,16 +278,17 @@ namespace Protocolo.Controllers
                 return RedirectToAction("Edit", atendimentoPersisted);
             }
 
-            ViewBag.MotivoId = new SelectList(db.Motivos, "id", "descricao", atendimento.MotivoId);
-            ViewBag.TelaId = new SelectList(db.Telas, "Id", "descricao", atendimento.TelaId);
-            ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes, "Id", "Nome", atendimento.FuncionarioClienteId);
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", atendimento.UsuarioId);
+            /* ViewBag.MotivoId = new SelectList(db.Motivos, "id", "descricao", atendimento.MotivoId);
+             ViewBag.TelaId = new SelectList(db.Telas, "Id", "descricao", atendimento.TelaId);
+             ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes, "Id", "Nome", atendimento.FuncionarioClienteId);
+             ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", atendimento.UsuarioId);*/
             return View(atendimento);
         }
 
         // GET: Atendimento/Edit/5
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return Redirect("home");
@@ -155,6 +305,47 @@ namespace Protocolo.Controllers
             ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", atendimento.UsuarioId);
             ViewBag.StatusAtendimentoId = new SelectList(db.StatusAtendimentos, "Id", "descricao", atendimento.StatusAtendimentoId);
 
+
+
+
+
+            var minutoInicial = from x in db.AtendimentosHistorico
+                                where x.StatusAtendimentoId == 1
+                                /*where x.Datahistorico.Minute == minA*/
+                                where x.AtendimentoId == id
+                                select x.Datahistorico.Minute;
+
+
+            var minutoFinal = from p in db.AtendimentosHistorico
+                              where p.StatusAtendimentoId == 5
+                              /* where p.Datahistorico.Minute == minB*/
+                              where p.AtendimentoId == id
+                              select p.Datahistorico.Minute;
+            //var mi = minutoInicial.ToList().First();
+            //var mf = minutoFinal.ToList().LastOrDefault();
+
+          // int minutos = minutoFinal.ToList().LastOrDefault() - minutoInicial.ToList().First();
+            /*
+
+            int minInicial = db.AtendimentosHistorico.First(p => p.Datahistorico.Minute &*
+
+            var minInicial = from t in db.AtendimentosHistorico
+                         select new
+                         {
+                             coluna1 = t.Datahistorico,
+                             coluna2 = t.StatusAtendimentoId == 1
+                         };
+
+            var minFinal = from t in db.AtendimentosHistorico
+                             select new
+                             {
+                                 coluna1 = t.Datahistorico,
+                                 coluna2 = t.StatusAtendimentoId == 5
+                             };
+
+            int minutos = minInicial - minFinal;
+            */
+        //    ViewBag.minutos = minutos;
 
             return View("Edit", atendimento);
         }
@@ -173,8 +364,9 @@ namespace Protocolo.Controllers
 
             atendimentoPersisted.Problema = atendimento.Problema;
             atendimentoPersisted.MotivoId = atendimento.MotivoId;
-            atendimentoPersisted.data_abertura = DateTime.Now;
+          //  atendimentoPersisted.data_abertura = DateTime.Now;
             atendimentoPersisted.StatusAtendimentoId = atendimento.StatusAtendimentoId;
+
 
             /*atendimentoPersisted.data_fechamento = DateTime.Now;*/
 
@@ -359,10 +551,12 @@ namespace Protocolo.Controllers
 
         public ActionResult Resolvido()
         {
-            var mes = DateTime.Today.AddDays(-30);
+            int mes = DateTime.Now.Month;
+            int ano = DateTime.Now.Year;
             var AtendResolvido = from p in db.Atendimentos
-                                 where p.data_fechamento >= mes && p.StatusAtendimentoId == 5
-                                 select p;
+                            where p.data_fechamento.Month == mes && p.data_fechamento.Year == ano
+                            where p.StatusAtendimentoId == 5
+                            select p;
 
             return View(AtendResolvido.ToList());
         }
@@ -374,7 +568,7 @@ namespace Protocolo.Controllers
             int ano = DateTime.Now.Year;
 
             var AtendGeral = from p in db.Atendimentos
-                             where p.data_abertura.Month == mes && p.data_abertura.Year == ano
+                             where p.data_fechamento.Month == mes && p.data_abertura.Year == ano
                              select p;
             return View(AtendGeral.ToList());
         }
@@ -410,7 +604,68 @@ namespace Protocolo.Controllers
         }
 
 
-        
+        public ActionResult Time()
+        {
+            int minA = DateTime.Now.Minute;
+            int minB = DateTime.Now.Minute;
+
+            var data_inicio = from x in db.AtendimentosHistorico
+                              where x.StatusAtendimentoId == 1
+                              where x.Datahistorico.Minute == minA
+                              select x;
+
+            var data_final = from p in db.AtendimentosHistorico
+                             where p.StatusAtendimentoId == 5
+                             where p.Datahistorico.Minute == minB
+                             select p;
+
+            var minutos = minA + minB;
+
+
+            return View(minutos);
+
+
+            /*
+
+
+            var tempo = "select Id, DateDiff(MINUTE, (select top 1 datahistorico from Atendimento_Historico where Atendimento.id = Atendimento_historico.Atendimentoid" +
+                          " and Atendimento_historico.StatusAtendimentoid = 1)," +
+                                                   " (select top 1 datahistorico from Atendimento_Historico where Atendimento.id = Atendimento_historico.Atendimentoid" +
+                          " and Atendimento_historico.StatusAtendimentoid = 5 order by id desc )) AS Minutos  from atendimento";
+
+                SqlDataReader reader = null;
+                SqlConnection conn = null;
+
+            try
+            {
+
+                conn = new
+                SqlConnection(db.Database.Connection.ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(tempo, conn);
+
+                reader = cmd.ExecuteReader();
+                reader.Read();
+                ViewBag.Data_inicio = reader["Data_inicio"].ToString();
+                ViewBag.Data_final = reader["Data_final"].ToString();
+            }
+            finally
+            {
+                // Fecha o datareader
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                // Fecha a conexão
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return View();  */
+        }
 
 
     }

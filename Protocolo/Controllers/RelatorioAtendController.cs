@@ -76,6 +76,7 @@ namespace Protocolo.Controllers
                                orderby p.Id
                                select p;
 
+
             if (atendimentos.Any())
             {
                 PreencherSearchModel(searchModel);

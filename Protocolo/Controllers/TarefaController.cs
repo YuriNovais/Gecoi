@@ -19,14 +19,187 @@ namespace Protocolo.Controllers
 
         }
 
+
+        [Authorize(Roles = "Administrador,Gestor")]
+        [HttpPost, ActionName("FiltrarTarefa")]
+        public ActionResult FiltrarTarefa(SearchGeneralTarefa FiltrosTela)
+        {
+
+
+            var t = db.Tarefas.AsQueryable();
+            if (FiltrosTela.ClienteId > 0)
+                t = t.Where(c => c.FuncionarioCliente.ClienteId == FiltrosTela.ClienteId);
+
+            if (FiltrosTela.SolicitanteId > 0)
+                t = t.Where(c => c.FuncionarioCliente.Id == FiltrosTela.SolicitanteId);
+
+            if (FiltrosTela.SituacaoId > 0)
+                t = t.Where(c => c.StatusTarefa.Id == FiltrosTela.SituacaoId);
+
+            if (FiltrosTela.MotivoId > 0)
+                t = t.Where(c => c.Motivo.id == FiltrosTela.MotivoId);
+
+            if (FiltrosTela.SistemaId > 0)
+                t = t.Where(c => c.Tela.Sistema.Id == FiltrosTela.SistemaId);
+
+            if (FiltrosTela.UsuarioId > 0)
+                t = t.Where(c => c.Usuario.Id == FiltrosTela.UsuarioId);
+
+            if (FiltrosTela.PessoaId > 0)
+                t = t.Where(c => c.PessoaId == FiltrosTela.PessoaId);
+
+            if (FiltrosTela.DataInicio != null)
+            {
+                t = t.Where(c => c.data_abertura >= FiltrosTela.DataInicio);
+            }
+
+            if (FiltrosTela.DataFim != null)
+            {
+                FiltrosTela.DataFim = AdjustDataFim(FiltrosTela.DataFim);
+                PeriodoInvalido(FiltrosTela);
+                t = t.Where(c => c.data_conclusao <= FiltrosTela.DataFim);
+            }
+
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_IndexGrid", t.ToList());
+
+            PreencherViewBag();
+
+            SearchGeneralTarefa Filtros = new SearchGeneralTarefa();
+
+            t = t.Where(c => c.StatusTarefaId == 1);
+
+
+
+
+            Filtros.Tarefas = t.ToList();
+
+
+            //-- se não foi chamado pelo ajax (botão do indexsearch) traz apenas os filtros
+
+            return View("Index", Filtros);
+        }
+
         // GET: Tarefa
         [Authorize(Roles = "Administrador,Gestor")]
-        public ActionResult Index()
+        public ActionResult Index(SearchGeneralTarefa FiltrosTela, Tarefa tarefa, Usuario UsuarioLogado)
         {
-            
 
-            var tarefas = db.Tarefas.Include(t => t.FuncionarioCliente).Include(t => t.Motivo).Include(t => t.Tela).Include(t => t.Usuario);
-            return View(tarefas.ToList());
+            Usuario USUARIOLOGADO = GetUsuarioLogado();
+
+            StatusTarefa Situacao = db.StatusTarefas.Find(1);
+
+
+
+            if (Session["ResponsavelFiltro"] == null)
+            {
+                Session["ResponsavelFiltro"] = USUARIOLOGADO;
+            }
+            if (Session["StatusFiltro"] == null)
+            {
+                Session["StatusFiltro"] = Situacao;
+            }
+
+            Usuario ResponsavelFiltro = (Usuario)Session["ResponsavelFiltro"];
+            StatusTarefa StatusFiltro = (StatusTarefa)Session["StatusFiltro"];
+
+            var t = db.Tarefas.AsQueryable();
+            if (FiltrosTela.ClienteId > 0)
+                t = t.Where(c => c.FuncionarioCliente.ClienteId == FiltrosTela.ClienteId);
+
+            if (FiltrosTela.SolicitanteId > 0)
+                t = t.Where(c => c.FuncionarioCliente.Id == FiltrosTela.SolicitanteId);
+
+            if (FiltrosTela.SituacaoId > 0)
+                t = t.Where(c => c.StatusTarefa.Id == FiltrosTela.SituacaoId);
+
+            if (FiltrosTela.MotivoId > 0)
+                t = t.Where(c => c.Motivo.id == FiltrosTela.MotivoId);
+
+            if (FiltrosTela.SistemaId > 0)
+                t = t.Where(c => c.Tela.Sistema.Id == FiltrosTela.SistemaId);
+
+            if (FiltrosTela.UsuarioId > 0)
+                t = t.Where(c => c.Usuario.Id == FiltrosTela.UsuarioId);
+
+            if (FiltrosTela.PessoaId > 0)
+                t = t.Where(c => c.PessoaId == UsuarioLogado.Id);
+
+            if (FiltrosTela.DataInicio != null)
+            {
+                t = t.Where(c => c.data_abertura >= FiltrosTela.DataInicio);
+            }
+
+            if (FiltrosTela.DataFim != null)
+            {
+                FiltrosTela.DataFim = AdjustDataFim(FiltrosTela.DataFim);
+                PeriodoInvalido(FiltrosTela);
+                t = t.Where(c => c.data_conclusao <= FiltrosTela.DataFim);
+            }
+
+            if (Request.IsAjaxRequest())
+
+                return PartialView("_IndexGrid", t.ToList());
+
+            PreencherViewBag();
+
+            SearchGeneralTarefa Filtros = new SearchGeneralTarefa();
+
+
+
+
+
+
+
+            t = t.Where(c => c.Pessoa.Id == USUARIOLOGADO.Id);
+            t = t.Where(c => c.StatusTarefaId == 1);
+
+            Session["FiltroUsuario"] = FiltrosTela.Usuario;
+
+          //  ViewBag.responsavel = new SelectList(db.Pessoas.ToList(), null, null, UsuarioLogado.Id);
+
+            Filtros.Tarefas = t.ToList();
+
+
+            //-- se não foi chamado pelo ajax (botão do indexsearch) traz apenas os filtros
+
+            return View("Index", Filtros);
+        }
+
+
+
+        private bool PeriodoInvalido(SearchGenericReportModel searchModel)
+        {
+            if (searchModel.DataInicio != null && searchModel.DataFim != null && searchModel.DataInicio > searchModel.DataFim)
+            {
+                Danger("Data Inícial deve ser inferior a Data Final.");
+
+                PreencherViewBag();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private DateTime? AdjustDataFim(DateTime? dateTime)
+        {
+            return dateTime.HasValue ? dateTime.Value.AddHours(23).AddMinutes(59).AddSeconds(59) : dateTime;
+        }
+
+
+
+        private void PreencherViewBag()
+        {
+            ViewBag.SistemaId = new SelectList(db.Sistemas.OrderBy(t => t.Nome), "Id", "Nome");
+            ViewBag.ClienteId = new SelectList(db.Clientes.OrderBy(a => a.RazaoSocial), "Id", "RazaoSocial");
+            ViewBag.SolicitanteId = new SelectList(db.FuncionarioClientes.OrderBy(s => s.Nome), "Id", "Nome");
+            ViewBag.Motivoid = new SelectList(db.Motivos.OrderBy(s => s.descricao), "Id", "Descricao");
+            ViewBag.Usuarioid = new SelectList(db.Usuarios.OrderBy(s => s.Logon), "Id", "Logon");
+            ViewBag.StatusId = new SelectList(db.StatusAtendimentos.OrderBy(s => s.descricao), "Id", "descricao");
+            ViewBag.SituacaoId = new SelectList(db.StatusTarefas.OrderBy(s => s.descricao), "Id", "descricao");
+            ViewBag.PessoaId = new SelectList(db.Usuarios.OrderBy(s => s.Logon), "Id", "logon");
         }
 
         // GET: Tarefa/Details/5
@@ -50,19 +223,20 @@ namespace Protocolo.Controllers
             var solicitante = db.FuncionarioClientes
                .Select(u => new
                {
-                   Nome = u.Nome + " - " + u.Cliente.RazaoSocial,
+                   Nome = u.Nome + " / " + u.Cliente.RazaoSocial,
                    identificador = u.Id
                }).ToList();
 
             var telas = db.Telas
               .Select(u => new
               {
-                  Nome = u.Descricao + " - " + u.Sistema.Nome,
+                  Nome = u.Descricao + " / " + u.Sistema.Nome,
                   ident = u.Id
               }).ToList();
 
             ViewBag.FuncionarioClienteId = new SelectList(solicitante.OrderBy(s => s.Nome), "identificador", "Nome");
             ViewBag.TelaId = new SelectList(telas.OrderBy(s => s.Nome), "ident", "Nome");
+            ViewBag.PrioridadeId = new SelectList(db.prioridades.OrderBy(s => s.Descricao), "Id", "Descricao");
             ViewBag.MotivoId = new SelectList(db.Motivos.OrderBy(s => s.descricao), "Id", "Descricao");
             return View();
         }
@@ -72,18 +246,19 @@ namespace Protocolo.Controllers
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UsuarioId,AtendimentoId,MotivoId,Prioridade,Descrição,TelaId,FuncionarioClienteId")] Tarefa tarefa, HttpPostedFileBase anexo)
+        public ActionResult Create([Bind(Include = "Id,UsuarioId,AtendimentoId,MotivoId,Prioridadeid,Descrição,TelaId,FuncionarioClienteId")] Tarefa tarefa, HttpPostedFileBase anexo)
         {
 
-             tarefa.Usuario = GetUsuarioLogado();
-             tarefa.data_abertura = DateTime.Now;
-             tarefa.data_prevista = DateTime.Now.AddDays(30);
-             tarefa.data_conclusao = DateTime.Now;
+            tarefa.Usuario = GetUsuarioLogado();
+            tarefa.data_abertura = DateTime.Now;
+            tarefa.data_prevista = DateTime.Now.AddDays(30);
+            tarefa.data_conclusao = DateTime.Now;
 
-             if (ModelState.IsValid)
-             {
-                 db.Tarefas.Add(tarefa);
-                 db.SaveChanges();
+
+            if (ModelState.IsValid)
+            {
+                db.Tarefas.Add(tarefa);
+                db.SaveChanges();
 
 
                 var historico = new TarefaHistorico
@@ -92,7 +267,8 @@ namespace Protocolo.Controllers
                     Datahistorico = DateTime.Now,
                     Descricao = "Abertura do Atendimento",
                     Usuario = GetUsuarioLogado(),
-                    StatusTarefaId = 1
+                    StatusTarefaId = 1,
+                    PessoaId = GetUsuarioLogado().Id
                 };
                 db.TarefasHistorico.Add(historico);
 
@@ -108,16 +284,16 @@ namespace Protocolo.Controllers
 
                 Success("Registro incluido com sucesso !");
 
-                 var tarefaPersisted = db.Tarefas.Find(tarefa.Id);
+                var tarefaPersisted = db.Tarefas.Find(tarefa.Id);
 
-                 return RedirectToAction("Edit", tarefaPersisted);
-             }
+                return RedirectToAction("Edit", tarefaPersisted);
+            }
 
-             ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes, "Id", "Nome", tarefa.FuncionarioClienteId);
-             ViewBag.MotivoId = new SelectList(db.Motivos, "id", "descricao", tarefa.MotivoId);
-             ViewBag.TelaId = new SelectList(db.Telas, "Id", "Descricao", tarefa.TelaId);
-             ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", tarefa.UsuarioId);
-             return View(tarefa);
+            ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes, "Id", "Nome", tarefa.FuncionarioClienteId);
+            ViewBag.MotivoId = new SelectList(db.Motivos, "id", "descricao", tarefa.MotivoId);
+            ViewBag.TelaId = new SelectList(db.Telas, "Id", "Descricao", tarefa.TelaId);
+            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", tarefa.UsuarioId);
+            return View(tarefa);
 
 
 
@@ -140,6 +316,9 @@ namespace Protocolo.Controllers
             ViewBag.TelaId = new SelectList(db.Telas, "Id", "Descricao", tarefa.TelaId);
             ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", tarefa.UsuarioId);
             ViewBag.StatusTarefaId = new SelectList(db.StatusTarefas, "Id", "descricao", tarefa.StatusTarefaId);
+            ViewBag.PessoaId = new SelectList(db.Usuarios, "Id", "Logon", tarefa.PessoaId);
+
+
 
             return View("Edit", tarefa);
         }
@@ -149,7 +328,7 @@ namespace Protocolo.Controllers
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UsuarioId,AtendimentoId,MotivoId,Prioridade,Descrição,TelaId,FuncionarioClienteId, HistoricoObservacao")] Tarefa tarefa, int StatusTarefaId, HttpPostedFileBase anexo)
+        public ActionResult Edit([Bind(Include = "Id,UsuarioId,AtendimentoId,MotivoId,Prioridade,Descrição,TelaId,FuncionarioClienteId, HistoricoObservacao")] Tarefa tarefa, int StatusTarefaId, int PessoaId, HttpPostedFileBase anexo)
         {
 
             var usuarioLogado = GetUsuarioLogado();
@@ -157,9 +336,11 @@ namespace Protocolo.Controllers
             var tarefaPersisted = db.Tarefas.Find(tarefa.Id);
 
             tarefaPersisted.Descrição = tarefa.Descrição;
-            tarefaPersisted.MotivoId = tarefa.MotivoId;
-            tarefaPersisted.data_abertura = DateTime.Now;
-            tarefaPersisted.StatusTarefaId= tarefa.StatusTarefaId;
+            /*  tarefaPersisted.MotivoId = tarefa.MotivoId;
+              tarefaPersisted.data_abertura = DateTime.Now;
+              tarefaPersisted.StatusTarefaId = tarefa.StatusTarefaId;
+              tarefaPersisted.PessoaId = tarefa.PessoaId;*/
+
 
             db.Entry(tarefaPersisted).State = EntityState.Modified;
             if (!string.IsNullOrEmpty(tarefa.HistoricoObservacao))
@@ -172,9 +353,13 @@ namespace Protocolo.Controllers
                     Datahistorico = DateTime.Now,
                     Descricao = tarefa.HistoricoObservacao,
                     Usuario = GetUsuarioLogado(),
-                    StatusTarefaId = StatusTarefaId
+                    StatusTarefaId = StatusTarefaId,
+                    PessoaId = PessoaId
+
                 });
             }
+
+
             if (anexo != null)
             {
                 var tarefaAnexo = CreateAnexo(anexo);
@@ -264,17 +449,17 @@ namespace Protocolo.Controllers
         {
             var tarefaAnexo = CreateAnexo(anexo);
 
-           /* if (tarefaAnexo == null)
-            {
-                ModelState.AddModelError("Arquivo", "Por favor selecione um arquivo");
-            }
-            else
-            {*/
-                tarefaAnexo.TarefaId = id;
+            /* if (tarefaAnexo == null)
+             {
+                 ModelState.AddModelError("Arquivo", "Por favor selecione um arquivo");
+             }
+             else
+             {*/
+            tarefaAnexo.TarefaId = id;
 
-                db.TarefasAnexo.Add(tarefaAnexo);
+            db.TarefasAnexo.Add(tarefaAnexo);
 
-                var ultimoHistorico = db.Tarefas.Find(id).TarefasHistorico.LastOrDefault();
+            var ultimoHistorico = db.Tarefas.Find(id).TarefasHistorico.LastOrDefault();
 
             db.TarefasHistorico.Add(new TarefaHistorico
             {
@@ -287,7 +472,7 @@ namespace Protocolo.Controllers
 
             db.SaveChanges();
 
-                Success("Anexo adicionado com sucesso.");
+            Success("Anexo adicionado com sucesso.");
             //}
 
             var result = Details(id);
@@ -377,8 +562,8 @@ namespace Protocolo.Controllers
             int ano = DateTime.Now.Year;
             var correcoesMes = from p in db.Tarefas
                                where p.data_abertura.Month == mes && p.data_abertura.Year == ano
-                               where p.StatusTarefaId == 10 && p.StatusTarefaId == 9
-                               where p.MotivoId == 19 && p.MotivoId == 21
+                               where p.StatusTarefaId == 10
+                               where p.MotivoId == 21
                                select p;
             return View(correcoesMes.ToList());
         }
@@ -390,8 +575,8 @@ namespace Protocolo.Controllers
             int ano = DateTime.Now.Year;
             var Melhorias = from p in db.Tarefas
                             where p.data_abertura.Month == mes && p.data_abertura.Year == ano
-                            where p.StatusTarefaId == 10 && p.StatusTarefaId == 9
-                            where p.MotivoId == 19 && p.MotivoId == 27 && p.MotivoId == 26
+                            where p.StatusTarefaId == 10
+                            where p.MotivoId == 26
                             select p;
             return View(Melhorias.ToList());
         }

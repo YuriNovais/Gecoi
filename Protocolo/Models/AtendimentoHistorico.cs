@@ -30,20 +30,20 @@ namespace Protocolo.Models
         [Display(Name = "Data ")]
         public DateTime Datahistorico { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Insira uma descrição, para gravar o historico.")]
         [AllowHtml]
-        [StringLength(500)]
+        [StringLength(1500)]
         [Column("solucao")]
         [Display(Name = "Descrição")]
         public string Solucao { get; set; }
 
         [Required]
         [Column("usuarioid")]
-        [Display(Name = "Usuario")]
+        [Display(Name = "Usuário")]
         public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Insira o Status")]
         [Column("StatusAtendimentoId")]
         [Display(Name = "Status")]
         public int StatusAtendimentoId { get; set; }

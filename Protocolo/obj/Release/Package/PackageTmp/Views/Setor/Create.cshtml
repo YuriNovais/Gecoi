@@ -1,0 +1,69 @@
+﻿@model Protocolo.Models.Setor
+
+@{
+    ViewBag.Title = "Cadastrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb" style="margin-left: -30px; margin-right: -30px;">
+            <li>
+                <a href="@Url.Action("Home", "Protocolo")">
+                    <i class="fa fa-home fa-fw"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Setor")">
+                    Setores
+                </a>
+            </li>
+            <li class="active">
+                @ViewBag.Title
+            </li>
+        </ol>
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="row">
+        @using (Html.BeginForm("Cadastrar", "Setor", FormMethod.Post, new { id = "setorForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.SecretariaId, "Secretaria", new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.SecretariaId, null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SecretariaId, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group text-center">
+                                <input type="submit" value="Salvar" class="btn btn-outline btn-primary confirmation-action" />
+                                <input type="button" value="Cancelar" class="btn btn-outline btn-primary" onclick="location.href='@Url.Action("Index", "Setor")'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

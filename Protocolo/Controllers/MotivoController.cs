@@ -21,9 +21,19 @@ namespace Protocolo.Controllers
 
         // GET: Motivos
         [Authorize(Roles = "Administrador,Gestor")]
-        public ActionResult Index()
+        public ActionResult Index(string Pesquisa ="")
         {
-            return View(db.Motivos.ToList());
+            var q = db.Motivos.AsQueryable();
+
+            if (!string.IsNullOrEmpty(Pesquisa))
+                q = q.Where(c => c.descricao.Contains(Pesquisa));
+
+            q = q.OrderBy(c => c.descricao);
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_Motivo", q.ToList());
+
+            return View(q.ToList());
         }
 
         // GET: Motivos/Details/5

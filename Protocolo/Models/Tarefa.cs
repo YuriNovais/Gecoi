@@ -35,25 +35,28 @@ namespace Protocolo.Models
         public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
 
+
         [Column("atendimentoid")]
         [Display(Name = "Atendimento")]
         public int? AtendimentoId { get; set; }
         public virtual Atendimento Atendimento { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Insira o motivo")]
         [Column("Motivoid")]
         [Display(Name = "Motivo")]
         public int MotivoId { get; set; }
         public virtual Motivo Motivo { get; set; }
 
-        [Column("prioridade")]
+        [Required(ErrorMessage = "Insira a prioridade")]
+        [Column("prioridadeid")]
         [Display(Name = "Prioridade")]
-        public int Prioridade { get; set; }
+        public int PrioridadeId { get; set; }
+        public virtual prioridade prioridade { get; set; }
         /*public virtual PrioridadeRequisicao PrioridadeRequisicao { get; set; }*/
 
         [Required]
         [AllowHtml]
-        [StringLength(500)]
+        [StringLength(1500)]
         [Column("descricao_tarefa")]
         [Display(Name = "Descrição")]
         public string Descrição { get; set; }
@@ -69,7 +72,7 @@ namespace Protocolo.Models
         public DateTime data_conclusao { get; set; }
 
         [NotMapped]
-        [StringLength(100)]
+        [StringLength(1500)]
         [Display(Name = "Histórico/Observação")]
         public string HistoricoObservacao { get; set; }
 
@@ -90,6 +93,11 @@ namespace Protocolo.Models
         [Display(Name = "Status")]
         public int StatusTarefaId { get; set; }
         public virtual StatusTarefa StatusTarefa { get; set; }
+
+        [Column("PessoaId")]
+        [Display(Name = "Pessoa")]
+        public int PessoaId { get; set; }
+        public virtual Usuario Pessoa { get; set; }
 
         public virtual ICollection<TarefaHistorico> TarefasHistorico { get; set; }
         public virtual ICollection<TarefaAnexo> TarefaAnexo { get; set; }

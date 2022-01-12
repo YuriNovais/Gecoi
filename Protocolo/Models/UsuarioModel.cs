@@ -1,4 +1,5 @@
 ﻿using Protocolo.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -235,6 +236,10 @@ namespace Protocolo.Models
 
         public virtual ICollection<Atendimento> Atendimentos { get; set; }
 
+        public static implicit operator int(Usuario v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

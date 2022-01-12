@@ -1,0 +1,25 @@
+﻿@model Protocolo.Models.SearchGeneral
+
+@{
+    ViewBag.Title = " Filtros de Atendimento";
+}
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+                                            ]
+            $(document).ready(function () {
+                var $processoGeral = $('#processoGeral');
+
+                if ($processoGeral.length) {
+                    writeView('Grupo Êxito - Gecoi ', $processoGeral.html());
+                }
+
+                initDatepicker();
+            });
+    </script>
+}

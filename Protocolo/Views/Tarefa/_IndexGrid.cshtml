@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Protocolo.Models.Tarefa>
+
+<div id="DivGrid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-setor" >
+                            <thead>
+                                <tr>
+                                    <th class="p-3 mb-2 bg-info text-white" >
+                                        N°
+                                    </th>
+                                   
+                                    <th class="p-3 mb-2 bg-info text-white">
+                                        Sistema
+                                    </th>
+
+                                    <th class="p-3 mb-2 bg-info text-white">
+                                        Descrição
+                                    </th>
+                                    <th class="p-3 mb-2 bg-info text-white">
+                                        Status
+                                    </th>
+                                    
+                                    <th class="p-3 mb-2 bg-info text-white">
+                                        Responsável
+                                    </th>
+                                    <th class="p-3 mb-2 bg-info text-white">
+                                        Data
+                                    </th>
+                                    <th class="p-3 mb-2 bg-info text-white">
+                                        Ações
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                       <!-- <td>
+                                            @ProtocoloHelper.Truncate(item.FuncionarioCliente.Cliente.RazaoSocial, 20)
+                                        </td>
+                                        <td>
+                                            @ProtocoloHelper.Truncate(item.Motivo.descricao, 20)
+                                        </td>  -->
+                                        <td>
+                                            @ProtocoloHelper.Truncate(item.Tela.Sistema.Nome, 20)
+                                        </td>
+
+                                        <td>
+                                            @ProtocoloHelper.Truncate(item.Descrição, 200)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StatusTarefa.descricao)
+                                        </td>
+                                        <!-- <td>
+                                            @ProtocoloHelper.Truncate(item.Usuario.Logon, 20)
+                                        </td>  -->
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Pessoa.Logon,20)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.data_abertura)
+                                        </td>
+
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary" title="Alterar" onclick="location.href = '@Url.Action("Edit", "Tarefa", new { id = item.Id })'"><i class="fa fa-pencil-alt"></i></button>
+                                                <button type="button" class="btn btn-default" title="Visualizar" onclick="location.href = '@Url.Action("Details", "Tarefa", new { id = item.Id })'"><i class="fa fa-search-plus"></i></button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                            <div class="text-white bg-secondary"><span> &nbsp;&nbsp; Registros: @Model.Count()</span></div>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

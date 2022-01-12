@@ -1,0 +1,53 @@
+﻿@model Protocolo.Models.UsuarioModel
+
+@if (Model.SetorUsuarioList.Any())
+{
+    <div class="form-group required">
+        @Html.Label("Setores", new { @class = "control-label", @style = "vertical-align: bottom;" })
+
+        <a class="collapsable" data-toggle="collapse" href="#collapseSetores" tabindex="11">
+            <i class="fa fa-plus-circle fa-2x"></i>
+        </a>
+
+        <div id="collapseSetores" class="panel-collapse collapse">
+
+            @for (int i = 0; i < Model.SetorUsuarioList.Count(); i++)
+            {
+                @Html.Hidden("SetorUsuarioList[" + @i + "].Id", Model.SetorUsuarioList[i].Id)
+                @Html.Hidden("SetorUsuarioList[" + @i + "].Nome", Model.SetorUsuarioList[i].Nome)
+            }
+
+            <table class="table table-striped table-bordered table-hover" id="dataTables-setor">
+                <thead>
+                    <tr>
+                        <th class="no-sort col-md-1 text-center">
+                            @Html.CheckBox("SelectAll", new { @class = "selectAll" })
+                        </th>
+                        <th>
+                            @Html.Raw("Nome")
+                        </th>
+                        <th class="no-sort col-md-2 text-center">
+                            @Html.Raw("Setor Padrão")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.SetorUsuarioList.Count(); i++)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @Html.CheckBox("SetorUsuarioList[" + @i + "].Selecionado", Model.SetorUsuarioList[i].Selecionado, new { @class = "checkbox_class" })
+                            </td>
+                            <td>
+                                @Html.Raw(Model.SetorUsuarioList[i].Nome)
+                            </td>
+                            <td class="text-center">
+                                @Html.CheckBox("SetorUsuarioList[" + @i + "].Padrao", Model.SetorUsuarioList[i].Padrao, new { @disabled = "disabled" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

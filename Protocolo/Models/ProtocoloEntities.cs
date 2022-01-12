@@ -9,6 +9,7 @@ namespace Protocolo.Models
         }
 
         public virtual DbSet<StatusTarefa> StatusTarefas { get; set; }
+        public virtual DbSet<prioridade> prioridades { get; set; }
         public virtual DbSet<StatusAtendimento> StatusAtendimentos { get; set; }
         public virtual DbSet<TarefaAnexo> TarefasAnexo { get; set; }
         public virtual DbSet<TarefaHistorico> TarefasHistorico { get; set; }

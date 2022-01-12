@@ -1,0 +1,241 @@
+﻿@model Protocolo.Models.SearchProtocoloModel
+
+@using Protocolo.Helpers;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Pesquisar - Protocolo</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="background-image: url('@Url.Content("~/Content/Images/topo-exito.jpg")'); height: 105px; margin-bottom: 0;">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+            @if (Request.IsAuthenticated)
+            {
+                <li>
+                    <a href="@Url.Action("Home", "Protocolo")">
+                        <i class="fa fa-home fa-fw"></i> Home
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> @User.Identity.Name <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="@Url.Action("EditarPerfil", "Usuario", new { logon = User.Identity.Name })">
+                                <i class="fa fa-user fa-fw"></i> Perfil do usuário
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="@Url.Action("LogOut", "Usuario")">
+                                <i class="fa fa-sign-out fa-fw"></i> Sair
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("Login", "Usuario")">
+                        <i class="fa fa-user fa-fw"></i> Entrar
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+
+    <div class="container">
+        @{
+            var alert = TempData.ContainsKey(Alert.TempDataKey) ? (Alert)TempData[Alert.TempDataKey] : null;
+
+            if (alert != null)
+            {
+                <div id="messages_dialog" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-body" style="padding: 15px">
+                            <div class="alert alert-@alert.AlertStyle" style="margin-bottom: 0px">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>
+                                </button>
+                                <span class="glyphicon glyphicon-@alert.Icon-sign" aria-hidden="true"></span>
+                                @Html.Raw(alert.Message)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <div class="row">
+            <div class="image-panel col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Pesquisar", "Protocolo", FormMethod.Post))
+                        {
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.Numero, htmlAttributes: new { @class = "form-control", @placeholder = "Número" })
+                                @Html.ValidationMessageFor(model => model.Numero, string.Empty, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.Ano, htmlAttributes: new { @class = "form-control", @placeholder = "Ano" })
+                                @Html.ValidationMessageFor(model => model.Ano, string.Empty, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.Chave, htmlAttributes: new { @class = "form-control", @placeholder = "Chave", @style = "width: 30%;" })
+                                @Html.ValidationMessageFor(model => model.Chave, string.Empty, new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="fa fa-search" aria-hidden="true"></span> Pesqusar
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                @if (Model.ResultModel != null)
+                {
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ResultModel.NumeroAno)
+                                    @Html.EditorFor(model => model.ResultModel.NumeroAno, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ResultModel.Assunto)
+                                    @Html.EditorFor(model => model.ResultModel.Assunto, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ResultModel.SetorAtual)
+                                    @Html.EditorFor(model => model.ResultModel.SetorAtual, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ResultModel.TipoDocumento)
+                                    @Html.EditorFor(model => model.ResultModel.TipoDocumento, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ResultModel.Requerente)
+                                    @Html.EditorFor(model => model.ResultModel.Requerente, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ResultModel.Status)
+                                    @Html.EditorFor(model => model.ResultModel.Status, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ResultModel.Descricao)
+                                    @Html.TextAreaFor(model => model.ResultModel.Descricao, new { rows = "5", cols = "40", @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+
+                            @if (Model.ResultModel.Historico.Any())
+                            {
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.Label("Histórico", new { @style = "vertical-align: bottom;" })
+
+                                        <a class="collapsable" data-toggle="collapse" href="#collapseHistorico">
+                                            <i class="fa fa-plus-circle fa-2x"></i>
+                                        </a>
+
+                                        <div id="collapseHistorico" class="panel-collapse collapse">
+                                            <table class="table table-striped table-bordered table-hover" style="width: auto !important">
+                                                <tr>
+                                                    <th class="col-md-2 text-center">
+                                                        @Html.Raw("Data/Hora")
+                                                    </th>
+                                                    <th class="col-md-3">
+                                                        @Html.Raw("Descrição")
+                                                    </th>
+                                                    <th class="col-md-1 text-center">
+                                                        @Html.Raw("Nº Lote")
+                                                    </th>
+                                                    <th class="col-md-3">
+                                                        @Html.Raw("Setor Origem")
+                                                    </th>
+                                                    <th class="col-md-3">
+                                                        @Html.Raw("Setor Destino")
+                                                    </th>
+                                                    <th class="col-md-1 text-center">
+                                                        @Html.Raw("Status")
+                                                    </th>
+                                                </tr>
+
+                                                @foreach (var historico in Model.ResultModel.Historico)
+                                                {
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            @Html.DisplayFor(hist => historico.DataMovimento)
+                                                        </td>
+                                                        <td>
+                                                            @ProtocoloHelper.Truncate(historico.Historico, 25)
+                                                        </td>
+                                                        <td class="text-center">
+                                                            @Html.DisplayFor(hist => historico.LoteId)
+                                                        </td>
+                                                        <td>
+                                                            @ProtocoloHelper.Truncate(historico.Setor.Nome, 20)
+                                                        </td>
+                                                        <td>
+                                                            @ProtocoloHelper.Truncate(historico.SetorDestino == null ? null : historico.SetorDestino.Nome, 20)
+                                                        </td>
+                                                        <td class="text-center">
+                                                            @Html.DisplayFor(hist => historico.DescricaoStatus)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/metisMenu")
+    @Scripts.Render("~/bundles/sbAdmin2")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#messages_dialog").modal("show");
+        });
+    </script>
+</body>
+</html>

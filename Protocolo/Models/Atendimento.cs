@@ -46,7 +46,7 @@ namespace Protocolo.Models
 
         [Required]
         [AllowHtml]
-        [StringLength(500)]
+        [StringLength(1500)]
         [Column("problema")]
         [Display(Name = "Descrição")]
         public string Problema { get; set; }
@@ -64,14 +64,14 @@ namespace Protocolo.Models
 
         [NotMapped]
         [AllowHtml]
-        [StringLength(100)]
+        [StringLength(1500)]
         [Display(Name = "Histórico/Observação")]
         public string HistoricoObservacao { get; set; }
 
 
         [Required]
         [Column("usuarioid")]
-        [Display(Name = "Usuario")]
+        [Display(Name = "Usuário")]
         public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
 
@@ -86,9 +86,70 @@ namespace Protocolo.Models
         public virtual ICollection<AtendimentoHistorico> AtendimentosHistorico { get; set; }
 
         public virtual ICollection<AtendimentoAnexo> AtendimentoAnexo { get; set; }
-
         //public virtual ICollection<Tarefa> Tarefas { get; set; }
        public object AtendimentoHistorico { get; internal set; }
+
+        //DropDowList da index do atendimento
+        /*
+        
+        [Display(Name = "Sistema")]
+        public int? SistemaId { get; set; }
+        public string Sistema { get; set; }
+
+
+        [Display(Name = "Cliente")]
+        public int? ClienteId { get; set; }
+        public string Cliente { get; set; }
+
+
+        [Display(Name = "Solicitante")]
+        public int? SolicitanteId { get; set; }
+        public string Solicitante { get; set; }
+
+        [Display(Name = "Motivo")]
+        public int? MotivosId { get; set; }
+        public string Motivos { get; set; }
+
+        [Display(Name = "Usuario")]
+        public int? UsuariosId { get; set; }
+        public string Usuarios { get; set; }
+
+        [Display(Name = "Status")]
+        public int? StatusId { get; set; }
+        public string Status { get; set; }
+
+        [Display(Name = "Situacao")]
+        public int? SituacaoId { get; set; }
+        public string Situacao { get; set; }
+
+        [Display(Name = "Data inicio")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? DataInicio { get; set; }
+
+        [Display(Name = "Data Final")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? DataFim { get; set; }
+        */
+    }
+
+    public class SearchAtend : SearchGenericReportModel
+    {
+        public List<Atendimento> Result { get; set; }
+
+        public int Total
+        {
+            get
+            {
+                if (Result == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return Result.Count;
+                }
+            }
+        }
     }
 
 

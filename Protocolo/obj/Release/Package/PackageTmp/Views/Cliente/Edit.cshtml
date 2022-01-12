@@ -1,0 +1,155 @@
+﻿@model Protocolo.Models.Cliente
+
+@{
+    ViewBag.Title = "Editar cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb" style="margin-left: -30px; margin-right: -30px;">
+            <li>
+                <a href="@Url.Action("Home", "Protocolo")">
+                    <i class="fa fa-home fa-fw"></i>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Cliente")">
+                    Clientes
+                </a>
+            </li>
+            <li class="active">
+
+            </li>
+        </ol>
+        <h1></h1>
+        @{ Html.RenderPartial("_Alerts"); }
+    </div>
+</div>
+
+
+
+<div class="row">
+    
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h4 class="page-header">@ViewBag.Title</h4>
+            </div>
+
+            @using (Html.BeginForm("Edit", "Cliente", FormMethod.Post, new { id = "clienteForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="col-lg-12">
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Id)
+                                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group required">
+                                    @Html.LabelFor(model => model.RazaoSocial, new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.RazaoSocial, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.RazaoSocial, string.Empty, new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Fantasia, new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Fantasia, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Fantasia, string.Empty, new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Endereco, new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Endereco, string.Empty, new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Complemento)
+                                    @Html.EditorFor(model => model.Complemento, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Complemento, string.Empty, new { @class = "text-danger" })
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group ">
+
+                                    @Html.LabelFor(model => model.Cep, new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @class = "form-control", @mask = "99999-999" } })
+                                    @Html.ValidationMessageFor(model => model.Cep, string.Empty, new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Cidade, new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cidade, string.Empty, new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Bairro, new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Bairro, string.Empty, new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Telefone)
+                                    @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", @tabindex = 19, @mask = "(99)99999-9999" } })
+                                    @Html.ValidationMessageFor(model => model.Telefone, string.Empty, new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group required">
+
+                                    @Html.LabelFor(model => model.Email)
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, string.Empty, new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Cnpj, new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cnpj, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cnpj, string.Empty, new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Uf, new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Uf, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Uf, string.Empty, new { @class = "text-danger" })
+
+                                    <div class="form-group ">
+                                        <div>
+                                            @Html.LabelFor(model => model.TipoPessoa, new { @class = "control-label" })
+                                        </div>
+                                        <div class="radio-inline">
+                                            <label style="font-weight: normal;">
+                                                @Html.RadioButtonFor(model => model.TipoPessoa, "F", new { @disabled = "disabled" }) Física
+                                            </label>
+                                        </div>
+                                        <div class="radio-inline">
+                                            <label style="font-weight: normal;">
+                                                @Html.RadioButtonFor(model => model.TipoPessoa, "J", new { @disabled = "disabled" }) Jurídica
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group text-center">
+
+                                    <input type="submit" value="Salvar" class="btn btn-outline btn-primary confirmation-action" />
+                                    <input type="button" value="Cancelar" class="btn btn-outline btn-primary" onclick="location.href='@Url.Action("Index", "Cliente")'" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

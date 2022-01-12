@@ -11,7 +11,8 @@ namespace Protocolo
                         "~/Scripts/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate*",
+                        "~/Scripts/jquery.unobtrusive*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquerymask").Include(
                         "~/Scripts/jquery.maskedinput.js",

@@ -21,11 +21,22 @@ namespace Protocolo.Controllers
         }
 
         // GET: FuncionarioCliente
-        public ActionResult Index()
+        public ActionResult Index(string Pesquisa = " ")
         {
+
+            /*var q = db.FuncionarioClientes.AsQueryable();
+            if (!string.IsNullOrEmpty(Pesquisa))
+                q = q.Where(c => c.Nome.Contains(Pesquisa));
+            q = q.OrderBy(c => c.Nome); 
+
+            return View(q.ToList());
+            */
             var funcionarioclientes = db.FuncionarioClientes.Include(s => s.ClienteId).OrderBy(s => s.Nome);
 
-            return View(db.FuncionarioClientes.ToList());
+              return View(db.FuncionarioClientes.ToList());
+           
+
+
         }
 
         // GET: FuncionarioCliente/Details/5
@@ -60,6 +71,11 @@ namespace Protocolo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,Email,ClienteId")] FuncionarioCliente funcionarioCliente)
         {
+            if (Existenome(funcionarioCliente))
+            {
+                return RedirectToAction("Create");
+            }
+
             if (!this.ModelState.IsValid)
             {
                 ViewBag.ClienteId = new SelectList(db.Clientes.OrderBy(s => s.RazaoSocial), "Id", "RazaoSocial", funcionarioCliente.ClienteId);
@@ -175,6 +191,17 @@ namespace Protocolo.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool Existenome(FuncionarioCliente FuncionarioCliente)
+        {
+            if (db.FuncionarioClientes.Any(u => u.Nome == FuncionarioCliente.Nome && u.Id != FuncionarioCliente.Id))
+            {
+                Danger("Já existe um solicitante cadastrado com esse nome, por favor insira o sobrenome.");
+
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -8,26 +8,6 @@ namespace Protocolo.Models
 {
     public class SearchGenericReportModel
     {
-       /* [Display(Name = "Tipo")]
-        public int? TipoDocumentoId { get; set; }
-
-        public string TipoDocumento { get; set; }
-
-        [Display(Name = "Setor")]
-        public int? SetorId { get; set; }
-
-        public string Setor { get; set; }
-
-        [Display(Name = "Assunto")]
-        public int? AssuntoId { get; set; }
-
-
-        public string Assunto { get; set; }
-
-        [Display(Name = "Situação")]
-        public string Status { get; set; }
-
-        public string DescricaoStatus { get; set; }*/
 
         [Display(Name = "Sistema")]
         public int? SistemaId { get; set; }
@@ -47,19 +27,23 @@ namespace Protocolo.Models
         public int? MotivoId { get; set; }
         public string Motivo { get; set; }
 
-        [Display(Name = "Usuario")]
+        [Display(Name = "Usuário")]
         public int? UsuarioId { get; set; }
         public string Usuario { get; set; }
+
+        [Display(Name = "Responsável")]
+        public int? PessoaId { get; set; }
+        public string Pessoa { get; set; }
 
         [Display(Name = "Status")]
         public int? StatusId { get; set; }
         public string Status { get; set; }
 
-        [Display(Name = "Situacao")]
+        [Display(Name = "Situacão")]
         public int? SituacaoId { get; set; }
         public string Situacao { get; set; }
 
-        [Display(Name = "Data inicio")]
+        [Display(Name = "Data Inicial")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DataInicio { get; set; }
 
@@ -131,6 +115,8 @@ namespace Protocolo.Models
     public class SearchGeneral : SearchGenericReportModel
     {
         public List<Atendimento> Result { get; set; }
+        public List<Atendimento> Atendimentos { get; set; }
+
 
         public int Total
         {
@@ -151,6 +137,8 @@ namespace Protocolo.Models
     public class SearchGeneralTarefa : SearchGenericReportModel
     {
         public List<Tarefa> Result { get; set; }
+
+        public List<Tarefa> Tarefas { get; set; }
 
         public int Total
         {

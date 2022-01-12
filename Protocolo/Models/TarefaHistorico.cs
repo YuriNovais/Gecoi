@@ -29,9 +29,9 @@ namespace Protocolo.Models
         [Display(Name = "Data ")]
         public DateTime Datahistorico { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Insira uma descrição, para gravar o historico.")]
         [AllowHtml]
-        [StringLength(500)]
+        [StringLength(1500)]
         [Column("descricao")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
@@ -42,10 +42,17 @@ namespace Protocolo.Models
         public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Insira o historico.")]
         [Column("StatusTarefaid")]
         [Display(Name = "Status")]
         public int StatusTarefaId { get; set; }
         public virtual StatusTarefa StatusTarefa { get; set; }
+
+        [Required]
+        [Column("PessoaId")]
+        [Display(Name = "Pessoa")]
+        public int PessoaId { get; set; }
+        public virtual Usuario Pessoa { get; set; }
+
     }
 }
