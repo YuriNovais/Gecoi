@@ -184,6 +184,7 @@ namespace Protocolo.Controllers
                                join a in db.Clientes on p.FuncionarioCliente.ClienteId equals a.Id
                                join s in db.Sistemas on p.Tela.SistemaId equals s.Id
                                join i in db.Usuarios on p.UsuarioId equals i.Id
+                               join o in db.Usuarios on p.PessoaId equals o.Id     /*   <--  adicionando solicitante no relatório*/
                                join u in db.Motivos on p.MotivoId equals u.id
                                join c in db.StatusTarefas on p.StatusTarefaId equals c.Id
 
@@ -193,6 +194,7 @@ namespace Protocolo.Controllers
                                && (searchModel.ClienteId == null || p.FuncionarioCliente.ClienteId == searchModel.ClienteId)
                                && (searchModel.SistemaId == null || p.Tela.SistemaId == searchModel.SistemaId)
                                && (searchModel.UsuarioId == null || p.UsuarioId == searchModel.UsuarioId)
+                               && (searchModel.PessoaId == null || p.PessoaId == searchModel.PessoaId)   /*   <--  adicionando solicitante no relatório*/
                                && (searchModel.MotivoId == null || p.MotivoId == searchModel.MotivoId)
                                && (searchModel.SituacaoId == null || p.StatusTarefaId == searchModel.SituacaoId)
                                && ((searchModel.DataInicio == null || p.data_abertura >= searchModel.DataInicio)
@@ -266,6 +268,15 @@ namespace Protocolo.Controllers
                 searchModel.Usuario = db.Usuarios.Find(searchModel.UsuarioId).Logon;
             }
 
+            if (searchModel.PessoaId == null)    /*   <--  adicionando solicitante no relatório*/
+            {
+                searchModel.Pessoa = "Todos";
+            }
+            else
+            {
+                searchModel.Pessoa = db.Usuarios.Find(searchModel.PessoaId).Nome;
+            }
+
             if (searchModel.SituacaoId == null)
             {
                 searchModel.Situacao = "Todos";
@@ -304,6 +315,7 @@ namespace Protocolo.Controllers
             ViewBag.SolicitanteId = new SelectList(db.FuncionarioClientes.OrderBy(s => s.Nome), "Id", "Nome");
             ViewBag.Motivoid = new SelectList(db.Motivos.OrderBy(s => s.descricao), "Id", "Descricao");
             ViewBag.Usuarioid = new SelectList(db.Usuarios.OrderBy(s => s.Logon), "Id", "Logon");
+            ViewBag.Pessoaid = new SelectList(db.Usuarios.OrderBy(s => s.Logon), "Id", "Logon");
             ViewBag.StatusId = new SelectList(db.StatusAtendimentos.OrderBy(s => s.descricao), "Id", "descricao");
             ViewBag.SituacaoId = new SelectList(db.StatusTarefas.OrderBy(s => s.descricao), "Id", "descricao");
         }   

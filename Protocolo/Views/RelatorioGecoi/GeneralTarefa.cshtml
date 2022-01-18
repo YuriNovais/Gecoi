@@ -55,7 +55,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.SolicitanteId, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.SolicitanteId, null,  "Todos", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.SolicitanteId, null, "Todos", htmlAttributes: new { @class = "form-control" })
                                 </div>
                             </div>
 
@@ -65,13 +65,21 @@
                     <div class="col-lg-12">
                         <div class="row">
 
-                            
 
 
-                            <div class="col-md-3">
+
+                            <!--  <div class="col-md-3">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.UsuarioId, new { @class = "control-label" })
                                     @Html.DropDownListFor(model => model.UsuarioId, null, "Todos", htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                              -->
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PessoaId, new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.PessoaId, null, "Todos", htmlAttributes: new { @class = "form-control" })
                                 </div>
                             </div>
 
@@ -98,33 +106,33 @@
                         </div>
                     </div>
 
-                        <div class="col-md-12">
-                            <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="fa fa-print" aria-hidden="true"></span> Imprimir
-                                </button>
-                            </div>
+                    <div class="col-md-12">
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="fa fa-print" aria-hidden="true"></span> Imprimir
+                            </button>
                         </div>
-                        }
                     </div>
-                </div>
-    </div>
-
-    </div>
-
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var $processoGeral = $('#processoGeral');
-
-                if ($processoGeral.length) {
-                    writeView('Relatório de Processos Geral', $processoGeral.html());
                 }
+            </div>
+        </div>
+    </div>
 
-                initDatepicker();
-            });
-        </script>
-    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $processoGeral = $('#processoGeral');
+
+            if ($processoGeral.length) {
+                writeView('Relatório de Processos Geral', $processoGeral.html());
+            }
+
+            initDatepicker();
+        });
+    </script>
+}
