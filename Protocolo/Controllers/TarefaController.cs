@@ -289,10 +289,10 @@ namespace Protocolo.Controllers
                 return RedirectToAction("Edit", tarefaPersisted);
             }
 
-            ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes, "Id", "Nome", tarefa.FuncionarioClienteId);
-            ViewBag.MotivoId = new SelectList(db.Motivos, "id", "descricao", tarefa.MotivoId);
-            ViewBag.TelaId = new SelectList(db.Telas, "Id", "Descricao", tarefa.TelaId);
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", tarefa.UsuarioId);
+            ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes.OrderBy(s => s.Cliente), "Id", "Nome", tarefa.FuncionarioClienteId);
+            ViewBag.MotivoId = new SelectList(db.Motivos.OrderBy(s => s.descricao), "id", "descricao", tarefa.MotivoId);
+            ViewBag.TelaId = new SelectList(db.Telas.OrderBy(s => s.Sistema), "Id", "Descricao", tarefa.TelaId);
+            ViewBag.UsuarioId = new SelectList(db.Usuarios.OrderBy(s => s.Logon), "Id", "Logon", tarefa.UsuarioId);
             return View(tarefa);
 
 
@@ -312,11 +312,11 @@ namespace Protocolo.Controllers
                 return HttpNotFound();
             }
             ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes, "Id", "Nome", tarefa.FuncionarioClienteId);
-            ViewBag.MotivoId = new SelectList(db.Motivos, "id", "descricao", tarefa.MotivoId);
+            ViewBag.MotivoId = new SelectList(db.Motivos.OrderBy(s => s.descricao), "id", "descricao", tarefa.MotivoId);
             ViewBag.TelaId = new SelectList(db.Telas, "Id", "Descricao", tarefa.TelaId);
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", tarefa.UsuarioId);
-            ViewBag.StatusTarefaId = new SelectList(db.StatusTarefas, "Id", "descricao", tarefa.StatusTarefaId);
-            ViewBag.PessoaId = new SelectList(db.Usuarios, "Id", "Logon", tarefa.PessoaId);
+            ViewBag.UsuarioId = new SelectList(db.Usuarios.OrderBy(s => s.Logon),"Id", "Logon", tarefa.UsuarioId);
+            ViewBag.StatusTarefaId = new SelectList(db.StatusTarefas.OrderBy(s => s.descricao),"Id", "descricao", tarefa.StatusTarefaId);
+            ViewBag.PessoaId = new SelectList(db.Usuarios.OrderBy(s => s.Logon), "Id", "Logon", tarefa.PessoaId);
 
 
 
@@ -336,10 +336,6 @@ namespace Protocolo.Controllers
             var tarefaPersisted = db.Tarefas.Find(tarefa.Id);
 
             tarefaPersisted.Descrição = tarefa.Descrição;
-            /*  tarefaPersisted.MotivoId = tarefa.MotivoId;
-              tarefaPersisted.data_abertura = DateTime.Now;
-              tarefaPersisted.StatusTarefaId = tarefa.StatusTarefaId;
-              tarefaPersisted.PessoaId = tarefa.PessoaId;*/
 
 
             db.Entry(tarefaPersisted).State = EntityState.Modified;

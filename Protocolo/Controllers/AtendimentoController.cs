@@ -299,11 +299,11 @@ namespace Protocolo.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MotivoId = new SelectList(db.Motivos, "id", "descricao", atendimento.MotivoId);
-            ViewBag.TelaId = new SelectList(db.Telas, "Id", "descricao", atendimento.TelaId);
-            ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes, "Id", "Nome", atendimento.FuncionarioClienteId);
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Logon", atendimento.UsuarioId);
-            ViewBag.StatusAtendimentoId = new SelectList(db.StatusAtendimentos, "Id", "descricao", atendimento.StatusAtendimentoId);
+            ViewBag.MotivoId = new SelectList(db.Motivos.OrderBy(s => s.descricao), "id", "descricao", atendimento.MotivoId);
+            ViewBag.TelaId = new SelectList(db.Telas.OrderBy(s => s.Sistema), "Id", "descricao", atendimento.TelaId);
+            ViewBag.FuncionarioClienteId = new SelectList(db.FuncionarioClientes.OrderBy(s => s.Cliente), "Id", "Nome", atendimento.FuncionarioClienteId);
+            ViewBag.UsuarioId = new SelectList(db.Usuarios.OrderBy(s => s.Logon), "Id", "Logon", atendimento.UsuarioId);
+            ViewBag.StatusAtendimentoId = new SelectList(db.StatusAtendimentos.OrderBy(s => s.descricao), "Id", "descricao", atendimento.StatusAtendimentoId);
 
 
 
@@ -602,6 +602,8 @@ namespace Protocolo.Controllers
 
             return View(erromes.ToList());
         }
+
+       
 
 
         public ActionResult Time()
